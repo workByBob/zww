@@ -1,0 +1,10 @@
+{
+  "15fe175263d": {
+    "path": "../resource/skins/aaa.ts",
+    "class": "aaa",
+    "parentPath": ""
+  },
+  "global": {
+    "globalAdsorbEnable": true
+  }
+}

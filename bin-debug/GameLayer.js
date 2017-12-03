@@ -1,0 +1,163 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var GameLayer = (function (_super) {
+    __extends(GameLayer, _super);
+    function GameLayer() {
+        var _this = _super.call(this) || this;
+        _this.startBtn = null;
+        _this.changeBtn = null;
+        _this.wechatBtn = null;
+        _this.giftBtn = null;
+        _this.invateBtn = null;
+        _this.kefuBtn = null;
+        _this.payBtn = null;
+        _this.taskBtn = null;
+        _this.showBtn = null;
+        _this.bagBtn = null;
+        _this.testBtn = null;
+        _this.showGroup = null;
+        _this.startGroup = null;
+        _this.playGroup = null;
+        // 方向键
+        _this.leftBtn = null;
+        _this.rightBtn = null;
+        _this.upBtn = null;
+        _this.downBtn = null;
+        _this.goBtn = null;
+        // 抓手
+        _this.hand = null;
+        _this.isTouch = false;
+        _this.handSpeedX = 0;
+        _this.handSpeedY = 0;
+        _this.pointX = 0;
+        _this.pointY = 0;
+        _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
+        _this.skinName = "resource/skins/gameLayer.exml";
+        // 计时器
+        var timer = new egret.Timer(10, 0);
+        timer.addEventListener(egret.TimerEvent.TIMER, _this.timerFunc, _this);
+        timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, _this.timerComFunc, _this);
+        //开始计时
+        timer.start();
+        return _this;
+    }
+    GameLayer.prototype.uiCompHandler = function () {
+        console.log(" 进来了 。。。");
+    };
+    GameLayer.prototype.partAdded = function (partName, instance) {
+        _super.prototype.partAdded.call(this, partName, instance);
+        if (instance == this.startBtn || instance == this.changeBtn || instance == this.wechatBtn || instance == this.giftBtn
+            || instance == this.invateBtn || instance == this.kefuBtn || instance == this.payBtn || instance == this.taskBtn
+            || instance == this.showBtn || instance == this.bagBtn || instance == this.goBtn) {
+            instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        }
+        if (instance == this.leftBtn || instance == this.rightBtn || instance == this.upBtn || instance == this.downBtn || instance == this.testBtn) {
+            instance.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onButtonTouch, this);
+            instance.addEventListener(egret.TouchEvent.TOUCH_END, this.onButtonTouch, this);
+            instance.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onButtonTouch, this);
+            instance.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onButtonTouch, this);
+        }
+    };
+    GameLayer.prototype.childrenCreated = function () {
+        _super.prototype.childrenCreated.call(this);
+        // 抓手
+        this.hand = new Hand();
+        this.showGroup.addChild(this.hand);
+    };
+    GameLayer.prototype.timerFunc = function () {
+        if (this.isTouch) {
+            this.hand.x = this.hand.x + this.handSpeedX;
+            this.hand.y = this.hand.y + this.handSpeedY;
+            if (this.hand.x < 0)
+                this.hand.x = 0;
+            if (this.hand.x > this.showGroup.width - 93)
+                this.hand.x = this.showGroup.width - 93;
+            if (this.hand.y > 0)
+                this.hand.y = 0;
+            if (this.hand.y < -40)
+                this.hand.y = -40;
+        }
+    };
+    GameLayer.prototype.timerComFunc = function () {
+        console.log("计时结束");
+    };
+    GameLayer.prototype.onButtonTouch = function (e) {
+        console.log(e.type);
+        if (e.type == egret.TouchEvent.TOUCH_BEGIN) {
+            this.isTouch = true;
+            switch (e.target) {
+                case this.upBtn:
+                    this.handSpeedY = -0.5;
+                    break;
+                case this.downBtn:
+                    this.handSpeedY = 0.5;
+                    break;
+                case this.leftBtn:
+                    this.handSpeedX = -1;
+                    this.hand.moveAction("left");
+                    break;
+                case this.rightBtn:
+                    this.handSpeedX = 1;
+                    this.hand.moveAction("right");
+                    break;
+            }
+            this.pointX = e.stageX;
+            this.pointY = e.stageY;
+        }
+        else {
+            console.log(e.$stageX + " =========" + e.$stageY);
+            // var shp:egret.Shape = new egret.Shape();
+            // shp.x = e.$stageX;
+            // shp.y = e.$stageY;
+            // shp.graphics.lineStyle( 1, 0xff0000 );
+            // shp.graphics.beginFill( 0xff0000, 1);
+            // shp.graphics.drawCircle( 0, 0, 2 );
+            // shp.graphics.endFill();
+            // this.addChild( shp );
+            var shp = new egret.Shape();
+            shp.graphics.lineStyle(10, 0x00ff00);
+            shp.graphics.moveTo(e.stageX, e.stageY);
+            shp.graphics.lineTo(this.pointX, this.pointY);
+            shp.graphics.endFill();
+            this.addChild(shp);
+            this.pointX = e.stageX;
+            this.pointY = e.stageY;
+            this.isTouch = false;
+            this.handSpeedX = 0;
+            this.handSpeedY = 0;
+            var self = this;
+            egret.Tween.get(this.hand, { loop: false }).wait(150).call(function () {
+                self.hand.moveAction("none");
+            });
+        }
+    };
+    GameLayer.prototype.onButtonClick = function (e) {
+        switch (e.target) {
+            case this.startBtn:
+                this.startGroup.visible = false;
+                this.playGroup.visible = true;
+                break;
+            case this.bagBtn:
+                var bag = new Bag();
+                this.addChild(bag);
+                break;
+            case this.payBtn:
+                var charge = new Recharge();
+                this.addChild(charge);
+                break;
+            case this.taskBtn:
+                var task = new Task();
+                this.addChild(task);
+                break;
+        }
+    };
+    return GameLayer;
+}(eui.Component));
+__reflect(GameLayer.prototype, "GameLayer", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=GameLayer.js.map
