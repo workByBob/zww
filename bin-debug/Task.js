@@ -11,6 +11,7 @@ var Task = (function (_super) {
     function Task() {
         var _this = _super.call(this) || this;
         _this.closeBtn = null;
+        _this.scrollG = null;
         _this.skinName = "resource/skins/task.exml";
         return _this;
     }
@@ -22,6 +23,11 @@ var Task = (function (_super) {
     };
     Task.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
+        for (var i = 0; i < 10; i++) {
+            var cell = new TaskCell();
+            cell.y = i * cell.height;
+            this.scrollG.addChild(cell);
+        }
     };
     Task.prototype.onButtonClick = function (e) {
         switch (e.target) {

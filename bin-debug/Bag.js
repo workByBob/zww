@@ -11,6 +11,9 @@ var Bag = (function (_super) {
     function Bag() {
         var _this = _super.call(this) || this;
         _this.closeBtn = null;
+        _this.tqCheck = null;
+        _this.yyCheck = null;
+        _this.scrollG = null;
         _this.skinName = "resource/skins/bag.exml";
         return _this;
     }
@@ -19,9 +22,29 @@ var Bag = (function (_super) {
         if (instance == this.closeBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         }
+        if (instance == this.tqCheck || instance == this.yyCheck) {
+            instance.addEventListener(eui.UIEvent.CHANGE, this.onCheckBoxClick, this);
+        }
     };
     Bag.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
+        // 默认打开提取按钮
+        this.checkBoxByTarget(this.tqCheck);
+    };
+    Bag.prototype.onCheckBoxClick = function (e) {
+        this.tqCheck.selected = false;
+        this.yyCheck.selected = false;
+        this.checkBoxByTarget(e.target);
+    };
+    Bag.prototype.checkBoxByTarget = function (target) {
+        switch (target) {
+            case this.tqCheck:
+                this.tqCheck.selected = true;
+                break;
+            case this.yyCheck:
+                this.yyCheck.selected = true;
+                break;
+        }
     };
     Bag.prototype.onButtonClick = function (e) {
         switch (e.target) {

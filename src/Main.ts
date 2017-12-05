@@ -10,6 +10,10 @@ class Main extends eui.UILayer {
     protected createChildren(): void {
         super.createChildren();
         AppCanvas = this;
+
+        // var url = encodeURIComponent(location.href.split("#")[0]);
+        // location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdfb3530f672883c1&redirect_uri="+ url +"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect ";
+        
         //inject the custom material parser
         //注入自定义的素材解析器
         let assetAdapter = new AssetAdapter();
@@ -35,22 +39,34 @@ class Main extends eui.UILayer {
     }
 
     public setGameState(state:number):void {
+        // 上次停留选娃娃界面则不清理
+        if (this.gameState != 2) {
+            this.removeChildren();
+        }
         this.gameState = state;
-        this.removeChildren();
         switch(state) {
             case 1: // 游戏load
                 this.loadingView = new LoadingUI();
                 this.addChild(this.loadingView);
             break;
-            case 2: // 游戏界面
-                this.gameLayer = new GameLayer();
-                this.addChild(this.gameLayer);
+            case 2: // 选择娃娃
+                var choice = new ChoiceWW();
+                this.addChild(choice);
+                choice.name = "choice";
             break;
-            case 3: // 其他界面
+            case 3: // 游戏界面
+                this.gameLayer = new GameLayer();
+                this.gameLayer.x = this.gameLayer.width;
+                this.addChild(this.gameLayer);
+                egret.Tween.get(this.gameLayer,{loop:false}).to({x:0},300);
+            break;
+            case 4: // 其他界面
             break;
         }
 
     }
+
+    
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
      * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.

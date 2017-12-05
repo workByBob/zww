@@ -4,9 +4,32 @@
 	<e:Image source="normalBg_png" horizontalCenter="0" verticalCenter="0"/>
 	<e:Image source="bgEffect01_png" x="2.67" y="254"/>
 	<e:Image source="bgEffect12_png" y="263.34" horizontalCenter="1"/>
-	<e:Button id="closeBtn" label="close" x="374" y="182"/>
+	<e:Button id="closeBtn" label="" x="439" y="187">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="closeBtn_png" source.down="closeBtn_png" source.disabled="closeBtn_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
 	<e:Scroller width="374" height="492" x="84.67" y="263.33">
-		<e:Group x="1.33" width="100%" height="100%">
+		<e:Group id="scrollG" x="1.33" width="100%" height="100%">
 		</e:Group>
 	</e:Scroller>
+	<e:CheckBox id="tqCheck" label="" x="113" y="208">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="tiqu2_png" source.down="tiqu1_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:CheckBox>
+	<e:CheckBox id="yyCheck" label="" x="278" y="208">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="yongyou2_png" source.down="yongyou1_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:CheckBox>
 </e:Skin>

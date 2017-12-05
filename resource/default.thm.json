@@ -30,11 +30,15 @@
     "resource/eui_skins/VScrollBarSkin.exml",
     "resource/eui_skins/VSliderSkin.exml",
     "resource/skins/bag.exml",
+    "resource/skins/choiceWW.exml",
+    "resource/skins/choiceWWCell.exml",
     "resource/skins/gameLayer.exml",
     "resource/skins/hand.exml",
     "resource/skins/load.exml",
     "resource/skins/loginGift.exml",
     "resource/skins/recharge.exml",
-    "resource/skins/task.exml"
+    "resource/skins/rechargeCell.exml",
+    "resource/skins/task.exml",
+    "resource/skins/taskCell.exml"
   ]
 }

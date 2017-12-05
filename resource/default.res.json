@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,back_png,wechat_png,startBtn_png,scoreBg_png,noticeBg_png,luckyBg_png,luckyBar_png,kefu_png,invate_png,gift_png,gameTask_png,gameShow_png,gamePay_png,gameBg_png,gameBag_png,friendsBg_png,changeBtn_png,1_png,2_png,3_png,4_png,goBtn_png,winBox_png,showBg_png,downD_png,downN_png,leftD_png,leftN_png,middle_png,rightD_png,rightN_png,upD_png,upN_png,gameLight_png,bgEffect01_png,bgEffect02_png,bgEffect03_png,bgEffect04_png,bgEffect05_png,bgEffect06_png,bgEffect07_png,bgEffect08_png,bgEffect09_png,bgEffect10_png,bgEffect11_png,normalBg_png,bgEffect12_png,bgEffect13_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,back_png,wechat_png,startBtn_png,scoreBg_png,noticeBg_png,luckyBg_png,luckyBar_png,kefu_png,invate_png,gift_png,gameTask_png,gameShow_png,gamePay_png,gameBg_png,gameBag_png,friendsBg_png,changeBtn_png,1_png,2_png,3_png,4_png,goBtn_png,winBox_png,showBg_png,downD_png,downN_png,leftD_png,leftN_png,middle_png,rightD_png,rightN_png,upD_png,upN_png,gameLight_png,bgEffect01_png,bgEffect02_png,bgEffect03_png,bgEffect04_png,bgEffect05_png,bgEffect06_png,bgEffect07_png,bgEffect08_png,bgEffect09_png,bgEffect10_png,bgEffect11_png,normalBg_png,bgEffect12_png,bgEffect13_png,buyBtn_png,cellBg_png,choiceBtn_png,choiceCell_png,choiceInfo_png,choiceMark_png,choiceTitle_png,closeBtn_png,coin_png,head58_png,lingquBtn_png,sureBtn_png,tiqu1_png,tiqu2_png,yongyou1_png,yongyou2_png,bgEffect14_png,rd1_png,rd2_png,jb1_png,jb2_png",
 			"name": "preload"
 		},
 		{
@@ -404,6 +404,116 @@
 			"url": "assets/zww/game/bgEffect13.png",
 			"type": "image",
 			"name": "bgEffect13_png"
+		},
+		{
+			"url": "assets/.DS_Store",
+			"type": "bin",
+			"name": "_DS_Store"
+		},
+		{
+			"url": "assets/zww/game/buyBtn.png",
+			"type": "image",
+			"name": "buyBtn_png"
+		},
+		{
+			"url": "assets/zww/game/cellBg.png",
+			"type": "image",
+			"name": "cellBg_png"
+		},
+		{
+			"url": "assets/zww/game/choiceBtn.png",
+			"type": "image",
+			"name": "choiceBtn_png"
+		},
+		{
+			"url": "assets/zww/game/choiceCell.png",
+			"type": "image",
+			"name": "choiceCell_png"
+		},
+		{
+			"url": "assets/zww/game/choiceInfo.png",
+			"type": "image",
+			"name": "choiceInfo_png"
+		},
+		{
+			"url": "assets/zww/game/choiceMark.png",
+			"type": "image",
+			"name": "choiceMark_png"
+		},
+		{
+			"url": "assets/zww/game/choiceTitle.png",
+			"type": "image",
+			"name": "choiceTitle_png"
+		},
+		{
+			"url": "assets/zww/game/closeBtn.png",
+			"type": "image",
+			"name": "closeBtn_png"
+		},
+		{
+			"url": "assets/zww/game/coin.png",
+			"type": "image",
+			"name": "coin_png"
+		},
+		{
+			"url": "assets/zww/game/head58.png",
+			"type": "image",
+			"name": "head58_png"
+		},
+		{
+			"url": "assets/zww/game/lingquBtn.png",
+			"type": "image",
+			"name": "lingquBtn_png"
+		},
+		{
+			"url": "assets/zww/game/sureBtn.png",
+			"type": "image",
+			"name": "sureBtn_png"
+		},
+		{
+			"url": "assets/zww/game/tiqu1.png",
+			"type": "image",
+			"name": "tiqu1_png"
+		},
+		{
+			"url": "assets/zww/game/tiqu2.png",
+			"type": "image",
+			"name": "tiqu2_png"
+		},
+		{
+			"url": "assets/zww/game/yongyou1.png",
+			"type": "image",
+			"name": "yongyou1_png"
+		},
+		{
+			"url": "assets/zww/game/yongyou2.png",
+			"type": "image",
+			"name": "yongyou2_png"
+		},
+		{
+			"url": "assets/zww/game/bgEffect14.png",
+			"type": "image",
+			"name": "bgEffect14_png"
+		},
+		{
+			"url": "assets/zww/game/rd1.png",
+			"type": "image",
+			"name": "rd1_png"
+		},
+		{
+			"url": "assets/zww/game/rd2.png",
+			"type": "image",
+			"name": "rd2_png"
+		},
+		{
+			"url": "assets/zww/game/jb1.png",
+			"type": "image",
+			"name": "jb1_png"
+		},
+		{
+			"url": "assets/zww/game/jb2.png",
+			"type": "image",
+			"name": "jb2_png"
 		}
 	]
 }

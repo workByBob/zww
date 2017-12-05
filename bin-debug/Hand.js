@@ -12,11 +12,16 @@ var Hand = (function (_super) {
         var _this = _super.call(this) || this;
         _this.handL = null;
         _this.handR = null;
+        _this.shadow = null;
+        _this.handArm = null;
         _this.skinName = "resource/skins/hand.exml";
         return _this;
     }
     Hand.prototype.partAdded = function (partName, instance) {
         _super.prototype.partAdded.call(this, partName, instance);
+        if (instance == this.shadow) {
+            this.shadow.alpha = 5;
+        }
     };
     Hand.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
@@ -34,6 +39,11 @@ var Hand = (function (_super) {
             egret.Tween.get(this.handL, { loop: false }).to({ rotation: 0 }, 100);
             egret.Tween.get(this.handR, { loop: false }).to({ rotation: 0 }, 100);
         }
+    };
+    Hand.prototype.playAction = function () {
+        egret.Tween.get(this.handArm, { loop: false }).to({ y: 200 }, 3000);
+        egret.Tween.get(this.handL, { loop: false }).to({ rotation: 30 }, 150, egret.Ease.circOut);
+        egret.Tween.get(this.handR, { loop: false }).to({ rotation: -30 }, 150, egret.Ease.circOut);
     };
     return Hand;
 }(eui.Component));

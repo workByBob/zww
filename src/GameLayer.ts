@@ -9,7 +9,6 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	private taskBtn:eui.Button = null;
 	private showBtn:eui.Button = null;
 	private bagBtn:eui.Button = null;
-	private testBtn:eui.Button = null;
 
 	private showGroup:eui.Group = null;
 	private startGroup:eui.Group = null;
@@ -50,10 +49,9 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		|| instance == this.showBtn || instance == this.bagBtn || instance == this.goBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
 		}
-		if (instance == this.leftBtn || instance == this.rightBtn || instance == this.upBtn || instance == this.downBtn || instance == this.testBtn) {
+		if (instance == this.leftBtn || instance == this.rightBtn || instance == this.upBtn || instance == this.downBtn ) {
             instance.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onButtonTouch, this);
             instance.addEventListener(egret.TouchEvent.TOUCH_END, this.onButtonTouch, this);
-            instance.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onButtonTouch, this);
             instance.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onButtonTouch, this);
 		}
 	}
@@ -74,7 +72,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			if (this.hand.x < 0) this.hand.x = 0;
 			if (this.hand.x > this.showGroup.width - 93) this.hand.x = this.showGroup.width - 93;
 			if (this.hand.y > 0) this.hand.y = 0;
-			if (this.hand.y < -40) this.hand.y = -40;
+			if (this.hand.y < -50) this.hand.y = -50;
 		}
     }
     private timerComFunc() {
@@ -103,30 +101,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 				this.hand.moveAction("right");
 				break;
 			}
-			this.pointX = e.stageX;
-			this.pointY = e.stageY;
 		}else {
-			console.log(e.$stageX + " =========" + e.$stageY);
-
-			// var shp:egret.Shape = new egret.Shape();
-			// shp.x = e.$stageX;
-			// shp.y = e.$stageY;
-			// shp.graphics.lineStyle( 1, 0xff0000 );
-			// shp.graphics.beginFill( 0xff0000, 1);
-			// shp.graphics.drawCircle( 0, 0, 2 );
-			// shp.graphics.endFill();
-			// this.addChild( shp );
-
-			var shp:egret.Shape = new egret.Shape();
-			shp.graphics.lineStyle( 10, 0x00ff00 );
-			shp.graphics.moveTo( e.stageX,e.stageY );
-			shp.graphics.lineTo( this.pointX , this.pointY );
-			shp.graphics.endFill();
-			this.addChild( shp );
-
-			this.pointX = e.stageX;
-			this.pointY = e.stageY;
-
 			this.isTouch = false;
 			this.handSpeedX = 0;
 			this.handSpeedY = 0;
@@ -154,6 +129,12 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			case this.taskBtn:
 				var task = new Task();
 				this.addChild(task);
+			break;
+			case this.goBtn:
+				this.hand.playAction();
+			break;
+			case this.changeBtn:
+                AppCanvas.setGameState(2);
 			break;
 		}
     }

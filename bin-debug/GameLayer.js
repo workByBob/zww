@@ -20,7 +20,6 @@ var GameLayer = (function (_super) {
         _this.taskBtn = null;
         _this.showBtn = null;
         _this.bagBtn = null;
-        _this.testBtn = null;
         _this.showGroup = null;
         _this.startGroup = null;
         _this.playGroup = null;
@@ -57,10 +56,9 @@ var GameLayer = (function (_super) {
             || instance == this.showBtn || instance == this.bagBtn || instance == this.goBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         }
-        if (instance == this.leftBtn || instance == this.rightBtn || instance == this.upBtn || instance == this.downBtn || instance == this.testBtn) {
+        if (instance == this.leftBtn || instance == this.rightBtn || instance == this.upBtn || instance == this.downBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onButtonTouch, this);
             instance.addEventListener(egret.TouchEvent.TOUCH_END, this.onButtonTouch, this);
-            instance.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onButtonTouch, this);
             instance.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onButtonTouch, this);
         }
     };
@@ -80,8 +78,8 @@ var GameLayer = (function (_super) {
                 this.hand.x = this.showGroup.width - 93;
             if (this.hand.y > 0)
                 this.hand.y = 0;
-            if (this.hand.y < -40)
-                this.hand.y = -40;
+            if (this.hand.y < -50)
+                this.hand.y = -50;
         }
     };
     GameLayer.prototype.timerComFunc = function () {
@@ -107,27 +105,8 @@ var GameLayer = (function (_super) {
                     this.hand.moveAction("right");
                     break;
             }
-            this.pointX = e.stageX;
-            this.pointY = e.stageY;
         }
         else {
-            console.log(e.$stageX + " =========" + e.$stageY);
-            // var shp:egret.Shape = new egret.Shape();
-            // shp.x = e.$stageX;
-            // shp.y = e.$stageY;
-            // shp.graphics.lineStyle( 1, 0xff0000 );
-            // shp.graphics.beginFill( 0xff0000, 1);
-            // shp.graphics.drawCircle( 0, 0, 2 );
-            // shp.graphics.endFill();
-            // this.addChild( shp );
-            var shp = new egret.Shape();
-            shp.graphics.lineStyle(10, 0x00ff00);
-            shp.graphics.moveTo(e.stageX, e.stageY);
-            shp.graphics.lineTo(this.pointX, this.pointY);
-            shp.graphics.endFill();
-            this.addChild(shp);
-            this.pointX = e.stageX;
-            this.pointY = e.stageY;
             this.isTouch = false;
             this.handSpeedX = 0;
             this.handSpeedY = 0;
@@ -154,6 +133,12 @@ var GameLayer = (function (_super) {
             case this.taskBtn:
                 var task = new Task();
                 this.addChild(task);
+                break;
+            case this.goBtn:
+                this.hand.playAction();
+                break;
+            case this.changeBtn:
+                AppCanvas.setGameState(2);
                 break;
         }
     };

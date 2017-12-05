@@ -11,6 +11,7 @@ var Recharge = (function (_super) {
     function Recharge() {
         var _this = _super.call(this) || this;
         _this.closeBtn = null;
+        _this.scrollG = null;
         _this.skinName = "resource/skins/recharge.exml";
         return _this;
     }
@@ -22,6 +23,11 @@ var Recharge = (function (_super) {
     };
     Recharge.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
+        for (var i = 0; i < 6; i++) {
+            var cell = new RechargeCell();
+            cell.y = i * cell.height;
+            this.scrollG.addChild(cell);
+        }
     };
     Recharge.prototype.onButtonClick = function (e) {
         switch (e.target) {

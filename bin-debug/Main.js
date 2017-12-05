@@ -15,6 +15,8 @@ var Main = (function (_super) {
     Main.prototype.createChildren = function () {
         _super.prototype.createChildren.call(this);
         AppCanvas = this;
+        // var url = encodeURIComponent(location.href.split("#")[0]);
+        // location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdfb3530f672883c1&redirect_uri="+ url +"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect ";
         //inject the custom material parser
         //注入自定义的素材解析器
         var assetAdapter = new AssetAdapter();
@@ -39,18 +41,28 @@ var Main = (function (_super) {
         this.setGameState(1);
     };
     Main.prototype.setGameState = function (state) {
+        // 上次停留选娃娃界面则不清理
+        if (this.gameState != 2) {
+            this.removeChildren();
+        }
         this.gameState = state;
-        this.removeChildren();
         switch (state) {
             case 1:
                 this.loadingView = new LoadingUI();
                 this.addChild(this.loadingView);
                 break;
             case 2:
-                this.gameLayer = new GameLayer();
-                this.addChild(this.gameLayer);
+                var choice = new ChoiceWW();
+                this.addChild(choice);
+                choice.name = "choice";
                 break;
             case 3:
+                this.gameLayer = new GameLayer();
+                this.gameLayer.x = this.gameLayer.width;
+                this.addChild(this.gameLayer);
+                egret.Tween.get(this.gameLayer, { loop: false }).to({ x: 0 }, 300);
+                break;
+            case 4:
                 break;
         }
     };

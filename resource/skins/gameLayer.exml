@@ -77,7 +77,7 @@
 	<e:Image id="luckyBar" source="luckyBar_png" x="111.17" y="665" width="20" scale9Grid="6,0,8,20"/>
 	<e:Label id="luckyText" text="幸运值：0/0" y="665" size="20" bold="true" horizontalCenter="0"/>
 	<e:Label id="nameText" text="我的名字" y="886" size="20" bold="true" horizontalCenter="-193" textColor="0xffffff"/>
-	<e:Group id="startGroup" width="320" height="140" x="108" y="708" visible="false">
+	<e:Group id="startGroup" width="320" height="140" x="108" y="708">
 		<e:Button id="startBtn" label="" x="-11.019999999999996" y="24" scaleX="1" scaleY="1">
 			<e:skinName>
 			<e:Skin states="up,down,disabled">
@@ -95,7 +95,7 @@
 			</e:skinName>
 		</e:Button>
 	</e:Group>
-	<e:Group id="playGroup" width="320" height="140" x="108" y="708">
+	<e:Group id="playGroup" width="320" height="140" x="108" y="708" visible="false">
 		<e:Button id="goBtn" label="" x="204" y="29">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
@@ -139,5 +139,4 @@
 		<e:Image source="middle_png" x="55" y="47.6"/>
 	</e:Group>
 	<e:Image source="gameLight_png" x="69" y="139"/>
-	<e:Button id="testBtn" label="" y="390.97" width="100%" height="500" horizontalCenter="0"/>
 </e:Skin>

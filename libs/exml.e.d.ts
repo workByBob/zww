@@ -52,6 +52,10 @@ declare module skins{
 }
 declare class bag extends eui.Skin{
 }
+declare class choiceWW extends eui.Skin{
+}
+declare class choiceWWCell extends eui.Skin{
+}
 declare class gameLayer extends eui.Skin{
 }
 declare class hand extends eui.Skin{
@@ -62,5 +66,9 @@ declare class loginGift extends eui.Skin{
 }
 declare class recharge extends eui.Skin{
 }
+declare class rechargeCell extends eui.Skin{
+}
 declare class task extends eui.Skin{
+}
+declare class taskCell extends eui.Skin{
 }
