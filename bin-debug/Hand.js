@@ -20,7 +20,7 @@ var Hand = (function (_super) {
     Hand.prototype.partAdded = function (partName, instance) {
         _super.prototype.partAdded.call(this, partName, instance);
         if (instance == this.shadow) {
-            this.shadow.alpha = 5;
+            this.shadow.alpha = 0.5;
         }
     };
     Hand.prototype.childrenCreated = function () {

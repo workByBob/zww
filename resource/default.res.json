@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,back_png,wechat_png,startBtn_png,scoreBg_png,noticeBg_png,luckyBg_png,luckyBar_png,kefu_png,invate_png,gift_png,gameTask_png,gameShow_png,gamePay_png,gameBg_png,gameBag_png,friendsBg_png,changeBtn_png,1_png,2_png,3_png,4_png,goBtn_png,winBox_png,showBg_png,downD_png,downN_png,leftD_png,leftN_png,middle_png,rightD_png,rightN_png,upD_png,upN_png,gameLight_png,bgEffect01_png,bgEffect02_png,bgEffect03_png,bgEffect04_png,bgEffect05_png,bgEffect06_png,bgEffect07_png,bgEffect08_png,bgEffect09_png,bgEffect10_png,bgEffect11_png,normalBg_png,bgEffect12_png,bgEffect13_png,buyBtn_png,cellBg_png,choiceBtn_png,choiceCell_png,choiceInfo_png,choiceMark_png,choiceTitle_png,closeBtn_png,coin_png,head58_png,lingquBtn_png,sureBtn_png,tiqu1_png,tiqu2_png,yongyou1_png,yongyou2_png,bgEffect14_png,rd1_png,rd2_png,jb1_png,jb2_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,back_png,wechat_png,startBtn_png,scoreBg_png,noticeBg_png,luckyBg_png,luckyBar_png,kefu_png,invate_png,gift_png,gameTask_png,gameShow_png,gamePay_png,gameBg_png,gameBag_png,friendsBg_png,changeBtn_png,1_png,2_png,3_png,4_png,goBtn_png,winBox_png,showBg_png,downD_png,downN_png,leftD_png,leftN_png,middle_png,rightD_png,rightN_png,upD_png,upN_png,gameLight_png,bgEffect01_png,bgEffect02_png,bgEffect03_png,bgEffect04_png,bgEffect05_png,bgEffect06_png,bgEffect07_png,bgEffect08_png,bgEffect09_png,bgEffect10_png,bgEffect11_png,normalBg_png,bgEffect12_png,bgEffect13_png,buyBtn_png,cellBg_png,choiceBtn_png,choiceCell_png,choiceInfo_png,choiceMark_png,choiceTitle_png,closeBtn_png,coin_png,head58_png,lingquBtn_png,sureBtn_png,tiqu1_png,tiqu2_png,yongyou1_png,yongyou2_png,bgEffect14_png,rd1_png,rd2_png,jb1_png,jb2_png,wwInfo_json",
 			"name": "preload"
 		},
 		{
@@ -514,6 +514,11 @@
 			"url": "assets/zww/game/jb2.png",
 			"type": "image",
 			"name": "jb2_png"
+		},
+		{
+			"url": "sos/wwInfo.json",
+			"type": "json",
+			"name": "wwInfo_json"
 		}
 	]
 }

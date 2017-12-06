@@ -1,3 +1,10 @@
+
+interface WxLogin { 
+    nickname:string;
+    headimgurl:string; 
+    openid:string; 
+} 
+
 var AppCanvas = null;
 class Main extends eui.UILayer {
     /**
@@ -7,18 +14,50 @@ class Main extends eui.UILayer {
     private loadingView: LoadingUI;
     public gameLayer: GameLayer;
     public gameState: number;
+    private wxLogin: WxLogin;
     protected createChildren(): void {
         super.createChildren();
         AppCanvas = this;
 
-        // var url = encodeURIComponent(location.href.split("#")[0]);
-        // location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdfb3530f672883c1&redirect_uri="+ url +"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect ";
-        
         //inject the custom material parser
         //注入自定义的素材解析器
         let assetAdapter = new AssetAdapter();
         egret.registerImplementation("eui.IAssetAdapter",assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter",new ThemeAdapter());
+
+        // 微信验证
+        var isTest = false;
+        if (Utils.isWeiXin() && isTest) {
+            var wx_code = Utils.getArgsValue(Utils.getCurrHref(), "code");
+            if (wx_code != ""){
+                var url = "http://218.244.146.142:52111/?app="+Data.wx_appId+"&code="+wx_code; 
+                var request = new egret.HttpRequest();
+                request.responseType = egret.HttpResponseType.TEXT;
+                request.open(url, egret.HttpMethod.GET);
+                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.send();
+                request.addEventListener(egret.Event.COMPLETE, this.wxListenerFun, this);
+            }else {
+                var url = encodeURIComponent(location.href.split("#")[0]);
+                location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdfb3530f672883c1&redirect_uri="+ url +"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect ";
+            }
+        }else {
+            this.openNextStep()
+        }
+    }
+
+    private wxListenerFun(e:egret.Event) { 
+        this.wxLogin = JSON.parse(e.target.data);
+        Data.weChat_name = this.wxLogin.nickname;
+        Data.weChat_headUrl = this.wxLogin.headimgurl; 
+        Data.weChat_openid = this.wxLogin.openid; 
+        // this.writeData('name',Data.weChat_name); 
+        // this.writeData('headUrl',Data.weChat_headUrl); 
+        // this.writeData('openid',Data.weChat_openid);
+        this.openNextStep()
+    } 
+
+    private openNextStep() {
         // 创建socket
         new WebSocketExample();
         // initialize the Resource loading library
