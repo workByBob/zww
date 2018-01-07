@@ -166,4 +166,14 @@ class Utils {
     //     urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
     //     urlLoader.load(req);
     // }
+
+	public static sendHttpServer(param:string,fun:Function) {
+		var url = param;
+		var request = new egret.HttpRequest();
+		request.responseType = egret.HttpResponseType.TEXT;
+		request.open(url, egret.HttpMethod.GET);
+		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		request.send();
+		request.addEventListener(egret.Event.COMPLETE, fun, this);
+	}
 }

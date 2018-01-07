@@ -91,10 +91,8 @@ class LoadingUI extends eui.Component implements  eui.UIComponent {
     private createScene(){
         if(this.isThemeLoadEnd && this.isResourceLoadEnd){
             // 加载完等待一下进入游戏
-            setTimeout(function(){
-                RES.destroyRes("loading");
-                AppCanvas.setGameState(2);
-            } , 0);
+            RES.destroyRes("loading");
+            AppCanvas.setGameState(2);
         }
     }
 

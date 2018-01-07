@@ -23,6 +23,10 @@
     },
     {
       "name": "socket"
+    },
+    {
+      "name": "weixinapi",
+      "path": "../egret-game-library/weixinapi/libsrc"
     }
   ]
 }

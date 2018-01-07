@@ -136,6 +136,33 @@ var Utils = (function () {
         console.log(a, b);
         return [a, b];
     };
+    // public static URLReq(url:string, data:string, fun:Function, thisObject:any) {
+    //     var urlLoader:egret.URLLoader = new egret.URLLoader();
+    //     var req:egret.URLRequest = new egret.URLRequest();
+    //     req.requestHeaders.push(new egret.URLRequestHeader("Content-Type", "text"));
+    //     req.url = url;
+    //     req.method = egret.URLRequestMethod.POST;
+    //     req.data = data;
+    //     urlLoader.load(req);
+    //     urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
+    // }
+    // public static URLLoader(url:string, fun:Function, thisObject:any) {
+    //     var urlLoader:egret.URLLoader = new egret.URLLoader();
+    //     var req:egret.URLRequest = new egret.URLRequest();
+    //     req.url = url;
+    //     req.method = egret.URLRequestMethod.GET;
+    //     urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
+    //     urlLoader.load(req);
+    // }
+    Utils.sendHttpServer = function (param, fun) {
+        var url = param;
+        var request = new egret.HttpRequest();
+        request.responseType = egret.HttpResponseType.TEXT;
+        request.open(url, egret.HttpMethod.GET);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.send();
+        request.addEventListener(egret.Event.COMPLETE, fun, this);
+    };
     return Utils;
 }());
 __reflect(Utils.prototype, "Utils");

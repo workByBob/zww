@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="show" width="540" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="bgEffect13_png" x="0" y="0" width="100%" height="100%" locked="true"/>
+	<e:Image source="normalBg_png" horizontalCenter="0" verticalCenter="0" locked="true"/>
+	<e:Image source="bgEffect11_png" y="120" horizontalCenter="0" locked="true"/>
+	<e:Image id="title" source="bgEffect15_png" y="200" horizontalCenter="0"/>
+	<e:Button id="closeBtn" label="" x="423" y="183">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="closeBtn_png" source.down="closeBtn_png" source.disabled="closeBtn_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image source="bgEffect10_png" x="318" y="732"/>
+	<e:Group id="showAll" width="400" height="400" x="70" y="293" locked="true" visible="false">
+		<e:Button id="publishBtn" label="" y="413" horizontalCenter="0" x="139" scaleX="1" scaleY="1">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="show_publish_png" source.down="show_publish_png" source.disabled="show_publish_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>
+	<e:Group id="showMyself" width="400" height="400" x="70" y="293" visible="false" locked="true">
+		<e:Button id="backBtn" label="" x="338" y="464">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="backBtn_png" source.down="backBtn_png" source.disabled="backBtn_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>
+	<e:Group id="showWrite" width="400" height="400" x="70" y="293">
+		<e:Image source="show_textBg_png" y="36" horizontalCenter="0"/>
+		<e:Button label="" x="23" y="259">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="show_addPic_png" source.down="show_addPic_png" source.disabled="show_addPic_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label text="Label" x="15" y="230" textColor="0xf21896"/>
+		<e:Button id="sureBtn" label="" x="247" y="369">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="show_sure_png" source.down="show_sure_png" source.disabled="show_sure_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="myShowBtn" label="" x="319" y="464">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="show_myShow_png" source.down="show_myShow_png" source.disabled="show_myShow_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:EditableText id="editText" width="320" height="140" text="" x="40" y="65" textColor="0x6d6868" size="15"/>
+	</e:Group>
+</e:Skin>

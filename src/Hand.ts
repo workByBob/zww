@@ -12,7 +12,7 @@ class Hand extends eui.Component implements eui.UIComponent {
     protected partAdded(partName:string, instance:any) {
         super.partAdded(partName, instance);
         if (instance == this.shadow) {
-            this.shadow.alpha = 0.5;
+            // this.shadow.alpha = 0.5;
         }
     }
 

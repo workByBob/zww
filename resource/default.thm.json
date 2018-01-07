@@ -38,6 +38,7 @@
     "resource/skins/loginGift.exml",
     "resource/skins/recharge.exml",
     "resource/skins/rechargeCell.exml",
+    "resource/skins/show.exml",
     "resource/skins/task.exml",
     "resource/skins/taskCell.exml"
   ]

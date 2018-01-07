@@ -68,6 +68,8 @@ declare class recharge extends eui.Skin{
 }
 declare class rechargeCell extends eui.Skin{
 }
+declare class show extends eui.Skin{
+}
 declare class task extends eui.Skin{
 }
 declare class taskCell extends eui.Skin{

@@ -5,14 +5,27 @@
 		"libs/modules/res/res.js",
 		"libs/modules/eui/eui.js",
 		"libs/modules/tween/tween.js",
-		"libs/modules/socket/socket.js"
+		"libs/modules/socket/socket.js",
+		"libs/modules/weixinapi/weixinapi.js"
 	],
 	"game": [
-		"bin-debug/AssetAdapter.js",
+		"bin-debug/Bag.js",
+		"bin-debug/Recharge.js",
+		"bin-debug/ChoiceWW.js",
+		"bin-debug/ChoiceWWCell.js",
+		"bin-debug/EverydayGift.js",
 		"bin-debug/GameLayer.js",
+		"bin-debug/Hand.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
+		"bin-debug/AssetAdapter.js",
+		"bin-debug/RechargeCell.js",
+		"bin-debug/Show.js",
+		"bin-debug/Task.js",
+		"bin-debug/TaskCell.js",
 		"bin-debug/ThemeAdapter.js",
+		"bin-debug/util/Data.js",
+		"bin-debug/util/Utils.js",
 		"bin-debug/util/WebSocket.js"
 	]
 }

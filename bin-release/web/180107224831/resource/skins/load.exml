@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="load" width="540" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="loadBgCell_png" x="0" y="0" width="100%" fillMode="repeat" height="100%"/>
+	<e:Image id="loadBg" source="loadBg_png" y="808" horizontalCenter="0"/>
+	<e:Image id="loadBar" width="20" height="23" x="41.5" y="816.66" source="loadBar_png" scale9Grid="8,1,8,22"/>
+	<e:Label id="loadNum" text="0/0" y="818" size="20" anchorOffsetX="0" horizontalCenter="0" verticalAlign="middle" bold="true"/>
+	<e:Label text="loading..." y="792" size="16" horizontalCenter="0" bold="true"/>
+	<e:Image source="loadEffect_png" horizontalCenter="0" top="0"/>
+	<e:Image source="loadName_png" y="628" horizontalCenter="0"/>
+</e:Skin>

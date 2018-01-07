@@ -1,11 +1,16 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var GameLayer = (function (_super) {
     __extends(GameLayer, _super);
     function GameLayer() {
@@ -34,6 +39,7 @@ var GameLayer = (function (_super) {
         _this.isTouch = false;
         _this.handSpeedX = 0;
         _this.handSpeedY = 0;
+        _this.nameText = null;
         _this.pointX = 0;
         _this.pointY = 0;
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
@@ -60,6 +66,9 @@ var GameLayer = (function (_super) {
             instance.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onButtonTouch, this);
             instance.addEventListener(egret.TouchEvent.TOUCH_END, this.onButtonTouch, this);
             instance.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onButtonTouch, this);
+        }
+        if (instance == this.nameText) {
+            this.nameText.text = Data.weChat_name;
         }
     };
     GameLayer.prototype.childrenCreated = function () {
@@ -139,6 +148,10 @@ var GameLayer = (function (_super) {
                 break;
             case this.changeBtn:
                 AppCanvas.setGameState(2);
+                break;
+            case this.showBtn:
+                var show = new Show();
+                this.addChild(show);
                 break;
         }
     };

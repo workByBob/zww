@@ -25,6 +25,8 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	private isTouch:Boolean = false; 
 	private handSpeedX:number = 0;
 	private handSpeedY:number = 0;
+
+	private nameText:eui.Label = null;
 	public constructor() {
 		super();
         this.addEventListener( eui.UIEvent.COMPLETE, this.uiCompHandler, this );
@@ -53,6 +55,9 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
             instance.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onButtonTouch, this);
             instance.addEventListener(egret.TouchEvent.TOUCH_END, this.onButtonTouch, this);
             instance.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onButtonTouch, this);
+		}
+		if (instance == this.nameText) {
+			this.nameText.text = Data.weChat_name;
 		}
 	}
 
@@ -135,6 +140,10 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			break;
 			case this.changeBtn:
                 AppCanvas.setGameState(2);
+			break;
+			case this.showBtn:
+				var show = new Show();
+				this.addChild(show);
 			break;
 		}
     }
