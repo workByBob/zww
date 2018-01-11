@@ -14,6 +14,12 @@ var Data = (function () {
     // 微信sceret
     Data.wx_secret = "3703eb5b3f6eb5aa64d82fa553ed90e";
     Data.userKey = "oexAxwoclOGqj-CFIq0NULqlx2xs";
+    // 娃娃json数据表
+    Data.wawaJson = null;
+    // 选中的娃娃信息
+    Data.selectData = null;
+    // 指令返回
+    Data.commond_userInfo = null;
     return Data;
 }());
 __reflect(Data.prototype, "Data");

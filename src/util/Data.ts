@@ -7,9 +7,17 @@ class Data {
     public static weChat_openid:string = "";
 
     // 微信appid 
-    public static wx_appId = "wxdfb3530f672883c1";
+    public static wx_appId = "wxdfb3530f672883c1";           
     // 微信sceret
     public static wx_secret = "3703eb5b3f6eb5aa64d82fa553ed90e";
 
     public static userKey = "oexAxwoclOGqj-CFIq0NULqlx2xs";
+
+    // 娃娃json数据表
+    public static wawaJson = null;
+    // 选中的娃娃信息
+    public static selectData:any = null;
+
+    // 指令返回
+    public static commond_userInfo = null;
 }

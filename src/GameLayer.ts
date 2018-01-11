@@ -11,6 +11,12 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	private bagBtn:eui.Button = null;
 
 	private showGroup:eui.Group = null;
+	private wawa01:eui.Image = null;
+	private wawa02:eui.Image = null;
+	private wawa03:eui.Image = null;
+	private wawa04:eui.Image = null;
+	private wawa05:eui.Image = null;
+	private wawaArray:any[] = [];
 	private startGroup:eui.Group = null;
 	private playGroup:eui.Group = null;
 	// 方向键
@@ -59,6 +65,14 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		if (instance == this.nameText) {
 			this.nameText.text = Data.weChat_name;
 		}
+		if (instance == this.wawa01 || instance == this.wawa02 || instance == this.wawa03 || instance == this.wawa04 || instance == this.wawa05) {
+			instance.texture = RES.getRes(Data.selectData.id + "_png");
+			this.wawaArray.push(instance);
+			console.log(this.getChildIndex( instance ) + " ====");
+			if (instance == this.wawa04) {
+				// this.setChildIndex( this.wawa04, 20 );
+			}
+		}
 	}
 
 
@@ -77,7 +91,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			if (this.hand.x < 0) this.hand.x = 0;
 			if (this.hand.x > this.showGroup.width - 93) this.hand.x = this.showGroup.width - 93;
 			if (this.hand.y > 0) this.hand.y = 0;
-			if (this.hand.y < -50) this.hand.y = -50;
+			if (this.hand.y < -70) this.hand.y = -70;
 		}
     }
     private timerComFunc() {
@@ -122,6 +136,13 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			case this.startBtn:
 				this.startGroup.visible = false;
 				this.playGroup.visible = true;
+
+				// 是否抓中
+				Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function(e:egret.Event) {
+					var request = <egret.HttpRequest>e.currentTarget;
+					console.log("winnig data : ",request.response);
+					// Data.commond_userInfo = JSON.parse(request.response);
+				});
 			break;
 			case this.bagBtn:
 				var bag = new Bag();

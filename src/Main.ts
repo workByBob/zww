@@ -99,8 +99,7 @@ class Main extends eui.UILayer {
         Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, function(e:egret.Event) {
             var request = <egret.HttpRequest>e.currentTarget;
             console.log("userInfo data : ",request.response);
-            var commond01 = JSON.parse(request.response);
-            console.log(decodeURIComponent(commond01["msg"]) );
+            Data.commond_userInfo = JSON.parse(request.response);
         });
     }
 

@@ -2,12 +2,12 @@
 <e:Skin class="gameLayer" width="540" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Group id="showGroup" width="400" height="520" x="69" y="142">
 		<e:Image source="showBg_png" x="0" y="0"/>
-		<e:Image source="1001_png" x="221" y="447.09" anchorOffsetX="34" width="68" anchorOffsetY="88" height="88"/>
-		<e:Image source="1001_png" x="91" y="447.09" anchorOffsetX="34" width="68" anchorOffsetY="88" height="88"/>
-		<e:Image source="1001_png" x="334.16" y="447.09" anchorOffsetX="34" width="68" anchorOffsetY="88" height="88"/>
-		<e:Image source="1001_png" x="174.61" y="491.09" anchorOffsetX="34" width="68" anchorOffsetY="88" height="88"/>
-		<e:Image source="1001_png" x="289" y="491.09" anchorOffsetX="34" width="68" anchorOffsetY="88" height="88"/>
+		<e:Image id="wawa04" source="1001_png" x="199" y="429" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="wawa05" source="1001_png" x="81" y="429" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="wawa03" source="1001_png" x="313" y="429" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
 		<e:Image id="winBox" source="winBox_png" x="0" y="524" anchorOffsetY="111"/>
+		<e:Image id="wawa02" source="1001_png" x="294" y="498" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="wawa01" source="1001_png" x="175" y="498" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
 	</e:Group>
 	<e:Image source="gameBg_png" x="0" y="0" locked="true"/>
 	<e:Image id="noticeBg" source="noticeBg_png" x="0" y="90"/>
@@ -143,5 +143,5 @@
 		</e:Button>
 		<e:Image source="middle_png" x="55" y="47.6"/>
 	</e:Group>
-	<e:Image source="gameLight_png" x="69" y="139"/>
+	<e:Image source="gameLight_png" x="69" y="139" locked="true"/>
 </e:Skin>

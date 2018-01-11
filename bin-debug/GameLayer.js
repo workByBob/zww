@@ -26,6 +26,12 @@ var GameLayer = (function (_super) {
         _this.showBtn = null;
         _this.bagBtn = null;
         _this.showGroup = null;
+        _this.wawa01 = null;
+        _this.wawa02 = null;
+        _this.wawa03 = null;
+        _this.wawa04 = null;
+        _this.wawa05 = null;
+        _this.wawaArray = [];
         _this.startGroup = null;
         _this.playGroup = null;
         // 方向键
@@ -70,6 +76,15 @@ var GameLayer = (function (_super) {
         if (instance == this.nameText) {
             this.nameText.text = Data.weChat_name;
         }
+        if (instance == this.wawa01 || instance == this.wawa02 || instance == this.wawa03 || instance == this.wawa04 || instance == this.wawa05) {
+            instance.texture = RES.getRes(Data.selectData.id + "_png");
+            this.wawaArray.push(instance);
+            this.setChildIndex(instance, -1);
+            console.log(this.getChildIndex(instance) + " ====");
+            if (instance == this.wawa04) {
+                // this.setChildIndex( this.wawa04, 20 );
+            }
+        }
     };
     GameLayer.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
@@ -87,8 +102,8 @@ var GameLayer = (function (_super) {
                 this.hand.x = this.showGroup.width - 93;
             if (this.hand.y > 0)
                 this.hand.y = 0;
-            if (this.hand.y < -50)
-                this.hand.y = -50;
+            if (this.hand.y < -70)
+                this.hand.y = -70;
         }
     };
     GameLayer.prototype.timerComFunc = function () {
@@ -130,6 +145,12 @@ var GameLayer = (function (_super) {
             case this.startBtn:
                 this.startGroup.visible = false;
                 this.playGroup.visible = true;
+                // 是否抓中
+                Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function (e) {
+                    var request = e.currentTarget;
+                    console.log("winnig data : ", request.response);
+                    // Data.commond_userInfo = JSON.parse(request.response);
+                });
                 break;
             case this.bagBtn:
                 var bag = new Bag();

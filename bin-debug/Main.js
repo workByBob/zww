@@ -94,8 +94,7 @@ var Main = (function (_super) {
         Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, function (e) {
             var request = e.currentTarget;
             console.log("userInfo data : ", request.response);
-            var commond01 = JSON.parse(request.response);
-            console.log(decodeURIComponent(commond01["msg"]));
+            Data.commond_userInfo = JSON.parse(request.response);
         });
     };
     Main.prototype.setGameState = function (state) {

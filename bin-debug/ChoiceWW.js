@@ -38,16 +38,59 @@ var ChoiceWW = (function (_super) {
     };
     ChoiceWW.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
+        // 获取娃娃信息
+        Data.wawaJson = RES.getRes("wwInfo_json");
         // 默认热度
         this.checkBoxByTarget(this.rdCheck);
     };
-    ChoiceWW.prototype.updateScroll = function () {
+    ChoiceWW.prototype.updateScroll = function (type) {
         this.scrollG.removeChildren();
         this.scroller.stopAnimation();
         this.scroller.viewport.scrollV = 0;
         this.topBtn.visible = false;
-        for (var i = 0; i < 10; i++) {
-            var cell = new ChoiceWWCell();
+        var wawaArray = new eui.ArrayCollection(Data.wawaJson["wawa"]);
+        var wawaNum = wawaArray.length;
+        var nWawaArray = new eui.ArrayCollection();
+        if (type == 0) {
+            for (var i = 0; i < wawaNum; i++) {
+                if (i == 0) {
+                    nWawaArray.addItem(wawaArray.getItemAt(i));
+                }
+                if (i + 1 < wawaNum) {
+                    for (var j = 0; j < nWawaArray.length; j++) {
+                        if (wawaArray.getItemAt(i + 1).hot >= nWawaArray.getItemAt(j).hot) {
+                            nWawaArray.addItemAt(wawaArray.getItemAt(i + 1), j); //添加的指定的索引位置
+                            break;
+                        }
+                        else {
+                            nWawaArray.addItemAt(wawaArray.getItemAt(i + 1), nWawaArray.length); //添加的指定的索引位置
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (type == 1) {
+            for (var i = 0; i < wawaNum; i++) {
+                if (i == 0) {
+                    nWawaArray.addItem(wawaArray.getItemAt(i));
+                }
+                if (i + 1 < wawaNum) {
+                    for (var j = 0; j < nWawaArray.length; j++) {
+                        if (wawaArray.getItemAt(i + 1).cost >= nWawaArray.getItemAt(j).cost) {
+                            nWawaArray.addItemAt(wawaArray.getItemAt(i + 1), j); //添加的指定的索引位置
+                            break;
+                        }
+                        else {
+                            nWawaArray.addItemAt(wawaArray.getItemAt(i + 1), nWawaArray.length); //添加的指定的索引位置
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for (var i = 0; i < nWawaArray.length; i++) {
+            var cell = new ChoiceWWCell(nWawaArray.getItemAt(i));
             cell.y = i * cell.height;
             this.scrollG.addChild(cell);
         }
@@ -61,11 +104,11 @@ var ChoiceWW = (function (_super) {
         switch (target) {
             case this.rdCheck:
                 this.rdCheck.selected = true;
-                this.updateScroll();
+                this.updateScroll(0);
                 break;
             case this.jbCheck:
                 this.jbCheck.selected = true;
-                this.updateScroll();
+                this.updateScroll(1);
                 break;
         }
     };
