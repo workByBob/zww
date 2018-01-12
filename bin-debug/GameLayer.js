@@ -1,16 +1,11 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var GameLayer = (function (_super) {
     __extends(GameLayer, _super);
     function GameLayer() {
@@ -25,6 +20,7 @@ var GameLayer = (function (_super) {
         _this.taskBtn = null;
         _this.showBtn = null;
         _this.bagBtn = null;
+        _this.lightGroup = null;
         _this.showGroup = null;
         _this.wawa01 = null;
         _this.wawa02 = null;
@@ -60,6 +56,11 @@ var GameLayer = (function (_super) {
     }
     GameLayer.prototype.uiCompHandler = function () {
         console.log(" 进来了 。。。");
+        // 动画
+        var mcFactory = new egret.MovieClipDataFactory(RES.getRes("lightAction_json"), RES.getRes("lightAction_png"));
+        var mc1 = new egret.MovieClip(mcFactory.generateMovieClipData("buling"));
+        this.lightGroup.addChild(mc1);
+        mc1.gotoAndPlay("action", -1);
     };
     GameLayer.prototype.partAdded = function (partName, instance) {
         _super.prototype.partAdded.call(this, partName, instance);
@@ -79,10 +80,8 @@ var GameLayer = (function (_super) {
         if (instance == this.wawa01 || instance == this.wawa02 || instance == this.wawa03 || instance == this.wawa04 || instance == this.wawa05) {
             instance.texture = RES.getRes(Data.selectData.id + "_png");
             this.wawaArray.push(instance);
-            this.setChildIndex(instance, -1);
-            console.log(this.getChildIndex(instance) + " ====");
+            // console.log(this.getChildIndex( instance ) + " ====");
             if (instance == this.wawa04) {
-                // this.setChildIndex( this.wawa04, 20 );
             }
         }
     };
@@ -149,7 +148,8 @@ var GameLayer = (function (_super) {
                 Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function (e) {
                     var request = e.currentTarget;
                     console.log("winnig data : ", request.response);
-                    // Data.commond_userInfo = JSON.parse(request.response);
+                    // 得到是否夹中结果
+                    Data.cmd_winnig = JSON.parse(request.response);
                 });
                 break;
             case this.bagBtn:

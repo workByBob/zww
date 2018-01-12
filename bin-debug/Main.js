@@ -1,16 +1,11 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var AppCanvas = null;
 var Main = (function (_super) {
     __extends(Main, _super);
@@ -31,7 +26,7 @@ var Main = (function (_super) {
         egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
         // 微信验证
-        var isTest = true;
+        var isTest = false;
         if (Utils.isWeiXin() && isTest) {
             var wx_code = Utils.getArgsValue(Utils.getCurrHref(), "code");
             if (wx_code != "") {
@@ -94,7 +89,7 @@ var Main = (function (_super) {
         Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, function (e) {
             var request = e.currentTarget;
             console.log("userInfo data : ", request.response);
-            Data.commond_userInfo = JSON.parse(request.response);
+            Data.cmd_userInfo = JSON.parse(request.response);
         });
     };
     Main.prototype.setGameState = function (state) {
@@ -104,22 +99,22 @@ var Main = (function (_super) {
         }
         this.gameState = state;
         switch (state) {
-            case 1:// 游戏load
+            case 1:
                 this.loadingView = new LoadingUI();
                 this.addChild(this.loadingView);
                 break;
-            case 2:// 选择娃娃
+            case 2:
                 var choice = new ChoiceWW();
                 this.addChild(choice);
                 choice.name = "choice";
                 break;
-            case 3:// 游戏界面
+            case 3:
                 this.gameLayer = new GameLayer();
                 this.gameLayer.x = this.gameLayer.width;
                 this.addChild(this.gameLayer);
                 egret.Tween.get(this.gameLayer, { loop: false }).to({ x: 0 }, 300);
                 break;
-            case 4:// 其他界面
+            case 4:
                 break;
         }
     };

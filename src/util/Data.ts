@@ -19,5 +19,6 @@ class Data {
     public static selectData:any = null;
 
     // 指令返回
-    public static commond_userInfo = null;
+    public static cmd_userInfo = null;
+    public static cmd_winnig = null;
 }

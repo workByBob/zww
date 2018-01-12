@@ -29,16 +29,11 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var LoadingUI = (function (_super) {
     __extends(LoadingUI, _super);
     function LoadingUI() {
@@ -46,6 +41,7 @@ var LoadingUI = (function (_super) {
         _this.loadBg = null;
         _this.loadBar = null;
         _this.loadNum = null;
+        _this.loadHead = null;
         _this.isThemeLoadEnd = false;
         _this.isResourceLoadEnd = false;
         _this.skinName = "resource/skins/load.exml";
@@ -54,13 +50,18 @@ var LoadingUI = (function (_super) {
     }
     LoadingUI.prototype.partAdded = function (partName, instance) {
         _super.prototype.partAdded.call(this, partName, instance);
+        if (instance == this.loadHead) {
+            egret.Tween.get(instance, { loop: true }).to({ rotation: 360 }, 1000);
+        }
     };
     LoadingUI.prototype.setProgress = function (current, total) {
         var getCur = Math.floor(current * (100 / total));
         this.loadNum.text = "" + getCur + "%";
         this.loadNum.anchorOffsetX = this.loadNum.width / 2;
-        if (this.loadBar)
+        if (this.loadBar) {
             this.loadBar.width = 458 / total * current;
+            this.loadHead.x = this.loadBar.width + this.loadHead.width / 2;
+        }
     };
     LoadingUI.prototype.uiCompHandler = function () {
         // load skin theme configuration file, you can manually modify the file. And replace the default skin.

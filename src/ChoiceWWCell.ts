@@ -13,7 +13,6 @@ class ChoiceWWCell extends eui.Component implements eui.UIComponent {
 		super();
 		this._data = cellData;
 		this.skinName = "resource/skins/choiceWWCell.exml";
-		console.log(cellData.name)
 	}
 
     protected partAdded(partName:string, instance:any) {

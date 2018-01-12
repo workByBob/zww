@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="gameLayer" width="540" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Group id="showGroup" width="400" height="520" x="69" y="142">
+	<e:Group id="showGroup" width="440" height="576" x="49" y="65" locked="true">
 		<e:Image source="showBg_png" x="0" y="0"/>
-		<e:Image id="wawa04" source="1001_png" x="199" y="429" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
-		<e:Image id="wawa05" source="1001_png" x="81" y="429" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
-		<e:Image id="wawa03" source="1001_png" x="313" y="429" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
-		<e:Image id="winBox" source="winBox_png" x="0" y="524" anchorOffsetY="111"/>
-		<e:Image id="wawa02" source="1001_png" x="294" y="498" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
-		<e:Image id="wawa01" source="1001_png" x="175" y="498" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="wawa04" source="1001_png" x="223" y="479" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="wawa05" source="1001_png" x="105" y="479" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="wawa03" source="1001_png" x="337" y="479" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="wawa02" source="1001_png" x="318" y="548" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="wawa01" source="1001_png" x="199" y="548" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
+		<e:Image id="winBox" source="winBox_png" x="1" y="564" anchorOffsetY="111"/>
 	</e:Group>
-	<e:Image source="gameBg_png" x="0" y="0" locked="true"/>
-	<e:Image id="noticeBg" source="noticeBg_png" x="0" y="90"/>
-	<e:Button id="wechatBtn" label="" x="0" y="383.65">
+	<e:Image id="maskBg" source="gameBg_png" x="0" y="0" locked="true"/>
+	<e:Group id="lightGroup" width="100%" height="1" x="0" y="0"/>
+	<e:Image id="noticeBg" source="noticeBg_png" y="97" horizontalCenter="0"/>
+	<e:Button id="wechatBtn" label="" x="0" y="282.65">
 		<e:skinName>
 			<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="wechat_png" source.down="wechat_png" source.disabled="wechat_png"/>
@@ -19,7 +20,15 @@
 			</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Button id="giftBtn" label="" x="0" y="306.37">
+	<e:Button id="noticeBtn" label="" x="0" y="359.65">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="notice_png" source.down="notice_png" source.disabled="notice_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="giftBtn" label="" x="0" y="205.37">
 		<e:skinName>
 			<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="gift_png" source.down="gift_png" source.disabled="gift_png"/>
@@ -27,7 +36,7 @@
 			</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Button id="invateBtn" label="" x="0" y="230.61">
+	<e:Button id="invateBtn" label="" x="0" y="129.61">
 		<e:skinName>
 			<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="invate_png" source.down="invate_png" source.disabled="invate_png"/>
@@ -43,7 +52,7 @@
 			</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Image id="friendsBg" source="friendsBg_png" x="474.86" y="177.09" anchorOffsetX="72"/>
+	<e:Image id="friendsBg" source="friendsBg_png" x="494.86" y="126.09" anchorOffsetX="72"/>
 	<e:Button id="payBtn" label="" x="210.61" y="895">
 		<e:skinName>
 		<e:Skin states="up,down,disabled">
@@ -77,39 +86,38 @@
 		</e:skinName>
 	</e:Button>
 	<e:Image id="scoreBg" source="scoreBg_png" x="10.48" y="910.91"/>
-	<e:Label id="scoreText" text="9999" x="60.19" y="919.94" size="20"/>
-	<e:Image id="luckyBg" source="luckyBg_png" x="103.48" y="657.21"/>
-	<e:Image id="luckyBar" source="luckyBar_png" x="111.17" y="665" width="20" scale9Grid="6,0,8,20"/>
-	<e:Label id="luckyText" text="幸运值：0/0" y="665" size="20" bold="true" horizontalCenter="0"/>
-	<e:Label id="nameText" text="我的名字" y="886" size="20" bold="true" horizontalCenter="-193" textColor="0xffffff"/>
+	<e:Label id="scoreText" text="9999" x="61.19" y="918.94" size="20"/>
+	<e:Image id="luckyBar" source="luckyBar_png" x="94.5" y="642.66" width="20" scale9Grid="6,0,8,20"/>
+	<e:Label id="luckyText" text="幸运值：0/0" y="644" size="20" bold="true" horizontalCenter="0"/>
+	<e:Label id="nameText" text="我的名字" y="876" size="20" bold="true" horizontalCenter="-210" textColor="0xffffff" locked="true"/>
 	<e:Group id="startGroup" width="320" height="140" x="108" y="708">
-		<e:Button id="startBtn" label="" x="-11.019999999999996" y="24" scaleX="1" scaleY="1">
-			<e:skinName>
-			<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="startBtn_png" source.down="startBtn_png" source.disabled="startBtn_png"/>
-				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
-			</e:skinName>
-		</e:Button>
-		<e:Button id="changeBtn" label="" x="207.16000000000003" y="24" scaleX="1" scaleY="1">
-			<e:skinName>
-			<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="changeBtn_png" source.down="changeBtn_png" source.disabled="changeBtn_png"/>
-				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
-			</e:skinName>
-		</e:Button>
-	</e:Group>
-	<e:Group id="playGroup" width="320" height="140" x="108" y="708" visible="false">
-		<e:Button id="goBtn" label="" x="204" y="29">
+		<e:Button id="startBtn" label="" x="-48.02" y="19" scaleX="1" scaleY="1">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="goBtn_png" source.down="goBtn_png" source.disabled="goBtn_png"/>
+				<e:Image width="100%" height="100%" source="startBtn01_png" source.down="startBtn02_png" source.disabled="startBtn02_png"/>
 				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Button id="upBtn" label="" x="55" y="11.6">
+		<e:Button id="changeBtn" label="" x="232.16" y="19" scaleX="1" scaleY="1">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="changeBtn01_png" source.down="changeBtn02_png" source.disabled="changeBtn02_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>
+	<e:Group id="playGroup" width="320" height="140" x="108" y="708" visible="false">
+		<e:Button id="goBtn" label="" x="246" y="12">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="goBtn01_png" source.down="goBtn02_png" source.disabled="goBtn02_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="upBtn" label="" x="25" y="-31.4">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="upN_png" source.down="upD_png" source.disabled="upD_png"/>
@@ -117,7 +125,7 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Button id="rightBtn" label="" x="111" y="44.4">
+		<e:Button id="rightBtn" label="" x="113" y="22.4">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="rightN_png" source.down="rightD_png" source.disabled="rightD_png"/>
@@ -125,7 +133,7 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Button id="downBtn" label="" x="55" y="79.6">
+		<e:Button id="downBtn" label="" x="25" y="64.6">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="downN_png" source.down="downD_png" source.disabled="downD_png"/>
@@ -133,7 +141,7 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Button id="leftBtn" label="" x="-3" y="44.6" scaleX="1" scaleY="1">
+		<e:Button id="leftBtn" label="" x="-74" y="21.6" scaleX="1" scaleY="1">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="leftN_png" source.down="leftD_png" source.disabled="leftD_png"/>
@@ -141,7 +149,5 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Image source="middle_png" x="55" y="47.6"/>
 	</e:Group>
-	<e:Image source="gameLight_png" x="69" y="139" locked="true"/>
 </e:Skin>

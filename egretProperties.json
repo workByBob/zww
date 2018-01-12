@@ -22,6 +22,9 @@
       "name": "tween"
     },
     {
+      "name": "game"
+    },
+    {
       "name": "socket"
     },
     {

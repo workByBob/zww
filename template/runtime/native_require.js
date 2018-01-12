@@ -7,6 +7,7 @@ var game_file_list = [
 	"libs/modules/res/res.js",
 	"libs/modules/eui/eui.js",
 	"libs/modules/tween/tween.js",
+	"libs/modules/game/game.js",
 	"libs/modules/socket/socket.js",
 	"libs/modules/weixinapi/weixinapi.js",
 	"bin-debug/Bag.js",

@@ -2,9 +2,11 @@ class Show extends eui.Component implements eui.UIComponent {
 
 	private closeBtn:eui.Button = null;
 	private editText:eui.EditableText = null;
+	private textInput:eui.TextInput = null;
 	public constructor() {
 		super();
 		this.skinName = "resource/skins/show.exml";
+        this.addEventListener( eui.UIEvent.COMPLETE, this.uiCompHandler, this );
 	}
 
     protected partAdded(partName:string, instance:any) {
@@ -13,10 +15,8 @@ class Show extends eui.Component implements eui.UIComponent {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
 		}
 		if (instance == this.editText) {
-			this.editText.width = 320;
-			this.editText.height = 140;
-			this.editText.text = "请输入不少于30字的玩家秀内容：";
-			this.editText.wordWrap = true;            
+		}
+		if (instance == this.textInput) {
 		}
     }
 
@@ -24,6 +24,10 @@ class Show extends eui.Component implements eui.UIComponent {
 		super.childrenCreated();                         
 	}
 
+	private uiCompHandler() {
+		this.textInput.textDisplay.multiline = true;
+	}
+ 
     private onButtonClick(e: egret.TouchEvent) {
 		switch(e.target) {
 			case this.closeBtn:

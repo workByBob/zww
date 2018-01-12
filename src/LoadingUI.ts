@@ -31,6 +31,7 @@ class LoadingUI extends eui.Component implements  eui.UIComponent {
     private loadBg:eui.Image = null;
     private loadBar:eui.Image = null;
     private loadNum:eui.Label = null;
+    private loadHead:eui.Image = null;
 
     public constructor() {
         super();
@@ -41,6 +42,9 @@ class LoadingUI extends eui.Component implements  eui.UIComponent {
 	protected partAdded(partName:string,instance:any):void
 	{
 		super.partAdded(partName,instance);
+        if (instance == this.loadHead) {
+            egret.Tween.get(instance,{loop:true}).to({rotation:360}, 1000);
+        }
 	}
 
 
@@ -48,7 +52,10 @@ class LoadingUI extends eui.Component implements  eui.UIComponent {
         var getCur = Math.floor(current * (100/total));
         this.loadNum.text = `${getCur}${"%"}`;
         this.loadNum.anchorOffsetX = this.loadNum.width/2;
-        if (this.loadBar) this.loadBar.width = 458/total * current;
+        if (this.loadBar) {
+            this.loadBar.width = 458/total * current;
+            this.loadHead.x = this.loadBar.width + this.loadHead.width/2;
+        }
     }
 
 	private uiCompHandler():void {

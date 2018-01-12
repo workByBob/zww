@@ -43,8 +43,12 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Label text="Label" x="15" y="230" textColor="0xf21896"/>
-		<e:Button id="sureBtn" label="" x="247" y="369">
+		<e:Label text="请上传美美的照片" x="22" y="239" size="13" textColor="0xed78bc"/>
+		<e:Label text="*写上给游戏的祝福语再拍照会更容易通过审核哦！" x="25" y="329" size="13" textColor="0xed78bc"/>
+		<e:Label text="玩家通过审核可获得100金币奖励" y="-15" textColor="0xED78BC" size="14" horizontalCenter="0"/>
+		<e:Label text="*通过审核后首次可获得100金币奖励" x="25" y="345.6" size="13" textColor="0xed78bc"/>
+		<e:Label text="*所上传的图片允许被引用" x="25" y="361.6" size="13" textColor="0xed78bc"/>
+		<e:Button id="sureBtn" label="" x="246" y="381">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="show_sure_png" source.down="show_sure_png" source.disabled="show_sure_png"/>
@@ -60,6 +64,6 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:EditableText id="editText" width="320" height="140" text="" x="40" y="65" textColor="0x6d6868" size="15"/>
+		<e:EditableText id="editText" width="320" height="140" text="" x="40" y="65" textColor="0x6d6868" size="15" multiline="true" promptColor="0xa89e9e" prompt="请输入不少于30字的玩家秀内容："/>
 	</e:Group>
 </e:Skin>

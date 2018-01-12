@@ -9,6 +9,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	private taskBtn:eui.Button = null;
 	private showBtn:eui.Button = null;
 	private bagBtn:eui.Button = null;
+	private lightGroup:eui.Group = null;
 
 	private showGroup:eui.Group = null;
 	private wawa01:eui.Image = null;
@@ -47,6 +48,11 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 
 	private uiCompHandler():void {
 		console.log(" 进来了 。。。");
+		// 动画
+		var mcFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory( RES.getRes("lightAction_json"), RES.getRes("lightAction_png") );
+		var mc1:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData( "buling" ) );
+		this.lightGroup.addChild( mc1 );
+		mc1.gotoAndPlay( "action" ,-1);
 	}
 	
 	protected partAdded(partName:string,instance:any):void
@@ -68,7 +74,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		if (instance == this.wawa01 || instance == this.wawa02 || instance == this.wawa03 || instance == this.wawa04 || instance == this.wawa05) {
 			instance.texture = RES.getRes(Data.selectData.id + "_png");
 			this.wawaArray.push(instance);
-			console.log(this.getChildIndex( instance ) + " ====");
+			// console.log(this.getChildIndex( instance ) + " ====");
 			if (instance == this.wawa04) {
 				// this.setChildIndex( this.wawa04, 20 );
 			}
@@ -136,12 +142,12 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			case this.startBtn:
 				this.startGroup.visible = false;
 				this.playGroup.visible = true;
-
 				// 是否抓中
 				Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function(e:egret.Event) {
 					var request = <egret.HttpRequest>e.currentTarget;
 					console.log("winnig data : ",request.response);
-					// Data.commond_userInfo = JSON.parse(request.response);
+					// 得到是否夹中结果
+					Data.cmd_winnig = JSON.parse(request.response);
 				});
 			break;
 			case this.bagBtn:

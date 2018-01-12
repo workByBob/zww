@@ -1,11 +1,11 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,back_png,wechat_png,startBtn_png,scoreBg_png,noticeBg_png,luckyBg_png,luckyBar_png,kefu_png,invate_png,gift_png,gameTask_png,gameShow_png,gamePay_png,gameBg_png,gameBag_png,friendsBg_png,changeBtn_png,1_png,2_png,3_png,4_png,goBtn_png,winBox_png,showBg_png,downD_png,downN_png,leftD_png,leftN_png,middle_png,rightD_png,rightN_png,upD_png,upN_png,gameLight_png,bgEffect01_png,bgEffect02_png,bgEffect03_png,bgEffect04_png,bgEffect05_png,bgEffect06_png,bgEffect07_png,bgEffect08_png,bgEffect09_png,bgEffect10_png,bgEffect11_png,normalBg_png,bgEffect12_png,bgEffect13_png,buyBtn_png,cellBg_png,choiceBtn_png,choiceCell_png,choiceInfo_png,choiceMark_png,choiceTitle_png,closeBtn_png,coin_png,head58_png,lingquBtn_png,sureBtn_png,tiqu1_png,tiqu2_png,yongyou1_png,yongyou2_png,bgEffect14_png,rd1_png,rd2_png,jb1_png,jb2_png,wwInfo_json,shadow_png,show_addPic_png,show_myShow_png,show_publish_png,show_receive_png,show_sucess_png,show_sure_png,show_textBg_png,show_working_png,backBtn_png,bgEffect15_png,1001_png,1002_png,1003_png,1004_png,1006_png,1007_png,1010_png,1008_png,1009_png,1005_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,back_png,wechat_png,scoreBg_png,noticeBg_png,luckyBg_png,luckyBar_png,kefu_png,invate_png,gift_png,gameTask_png,gameShow_png,gamePay_png,gameBg_png,gameBag_png,friendsBg_png,1_png,2_png,3_png,4_png,winBox_png,showBg_png,downD_png,downN_png,leftD_png,leftN_png,rightD_png,rightN_png,upD_png,upN_png,bgEffect01_png,bgEffect02_png,bgEffect03_png,bgEffect04_png,bgEffect05_png,bgEffect06_png,bgEffect07_png,bgEffect08_png,bgEffect09_png,bgEffect10_png,bgEffect11_png,normalBg_png,bgEffect12_png,bgEffect13_png,buyBtn_png,cellBg_png,choiceBtn_png,choiceCell_png,choiceInfo_png,choiceMark_png,choiceTitle_png,closeBtn_png,coin_png,head58_png,lingquBtn_png,sureBtn_png,tiqu1_png,tiqu2_png,yongyou1_png,yongyou2_png,bgEffect14_png,rd1_png,rd2_png,jb1_png,jb2_png,wwInfo_json,shadow_png,show_addPic_png,show_myShow_png,show_publish_png,show_receive_png,show_sucess_png,show_sure_png,show_textBg_png,show_working_png,backBtn_png,bgEffect15_png,1001_png,1002_png,1003_png,1004_png,1006_png,1007_png,1010_png,1008_png,1009_png,1005_png,changeBtn01_png,changeBtn02_png,startBtn01_png,startBtn02_png,notice_png,goBtn01_png,goBtn02_png,lightAction_json,lightAction_png",
 			"name": "preload"
 		},
 		{
-			"keys": "loadBar_png,loadBg_png,loadBgCell_png,loadEffect_png,loadName_png",
+			"keys": "loadBar_png,loadBg_png,loadBgCell_png,loadEffect_png,loadName_png,loadingHead_png,wawa_png",
 			"name": "loading"
 		}
 	],
@@ -161,11 +161,6 @@
 			"name": "loadBgCell_png"
 		},
 		{
-			"url": "assets/zww/game/changeBtn.png",
-			"type": "image",
-			"name": "changeBtn_png"
-		},
-		{
 			"url": "assets/zww/game/friendsBg.png",
 			"type": "image",
 			"name": "friendsBg_png"
@@ -231,11 +226,6 @@
 			"name": "scoreBg_png"
 		},
 		{
-			"url": "assets/zww/game/startBtn.png",
-			"type": "image",
-			"name": "startBtn_png"
-		},
-		{
 			"url": "assets/zww/game/wechat.png",
 			"type": "image",
 			"name": "wechat_png"
@@ -271,11 +261,6 @@
 			"name": "4_png"
 		},
 		{
-			"url": "assets/zww/game/goBtn.png",
-			"type": "image",
-			"name": "goBtn_png"
-		},
-		{
 			"url": "assets/zww/game/dirBtn/downD.png",
 			"type": "image",
 			"name": "downD_png"
@@ -294,11 +279,6 @@
 			"url": "assets/zww/game/dirBtn/leftN.png",
 			"type": "image",
 			"name": "leftN_png"
-		},
-		{
-			"url": "assets/zww/game/dirBtn/middle.png",
-			"type": "image",
-			"name": "middle_png"
 		},
 		{
 			"url": "assets/zww/game/dirBtn/rightD.png",
@@ -329,11 +309,6 @@
 			"url": "assets/zww/game/winBox.png",
 			"type": "image",
 			"name": "winBox_png"
-		},
-		{
-			"url": "assets/zww/game/gameLight.png",
-			"type": "image",
-			"name": "gameLight_png"
 		},
 		{
 			"url": "assets/zww/game/bgEffect01.png",
@@ -624,6 +599,61 @@
 			"url": "sos/head/1005.png",
 			"type": "image",
 			"name": "1005_png"
+		},
+		{
+			"url": "assets/zww/loadingHead.png",
+			"type": "image",
+			"name": "loadingHead_png"
+		},
+		{
+			"url": "assets/zww/wawa.png",
+			"type": "image",
+			"name": "wawa_png"
+		},
+		{
+			"url": "assets/zww/game/changeBtn01.png",
+			"type": "image",
+			"name": "changeBtn01_png"
+		},
+		{
+			"url": "assets/zww/game/changeBtn02.png",
+			"type": "image",
+			"name": "changeBtn02_png"
+		},
+		{
+			"url": "assets/zww/game/startBtn01.png",
+			"type": "image",
+			"name": "startBtn01_png"
+		},
+		{
+			"url": "assets/zww/game/startBtn02.png",
+			"type": "image",
+			"name": "startBtn02_png"
+		},
+		{
+			"url": "assets/zww/game/notice.png",
+			"type": "image",
+			"name": "notice_png"
+		},
+		{
+			"url": "assets/zww/game/goBtn01.png",
+			"type": "image",
+			"name": "goBtn01_png"
+		},
+		{
+			"url": "assets/zww/game/goBtn02.png",
+			"type": "image",
+			"name": "goBtn02_png"
+		},
+		{
+			"name": "lightAction_json",
+			"type": "json",
+			"url": "assets/zww/game/lightAction.json"
+		},
+		{
+			"name": "lightAction_png",
+			"type": "image",
+			"url": "assets/zww/game/lightAction.png"
 		}
 	]
 }

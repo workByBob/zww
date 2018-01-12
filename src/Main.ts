@@ -35,7 +35,7 @@ class Main extends eui.UILayer {
         egret.registerImplementation("eui.IThemeAdapter",new ThemeAdapter());
 
         // 微信验证
-        var isTest = true;
+        var isTest = false;
         if (Utils.isWeiXin() && isTest) {
             var wx_code = Utils.getArgsValue(Utils.getCurrHref(), "code");
             if (wx_code != ""){
@@ -99,7 +99,7 @@ class Main extends eui.UILayer {
         Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, function(e:egret.Event) {
             var request = <egret.HttpRequest>e.currentTarget;
             console.log("userInfo data : ",request.response);
-            Data.commond_userInfo = JSON.parse(request.response);
+            Data.cmd_userInfo = JSON.parse(request.response);
         });
     }
 
