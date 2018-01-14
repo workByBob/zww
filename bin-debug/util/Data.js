@@ -20,6 +20,8 @@ Data.userKey = "oexAxwoclOGqj-CFIq0NULqlx2xs";
 Data.wawaJson = null;
 // 选中的娃娃信息
 Data.selectData = null;
+// 抓手停留在娃娃身上的index
+Data.onWawaIndex = -1;
 // 指令返回
 Data.cmd_userInfo = null;
 Data.cmd_winnig = null;

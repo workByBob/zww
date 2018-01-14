@@ -39,8 +39,35 @@ var Hand = (function (_super) {
             egret.Tween.get(this.handR, { loop: false }).to({ rotation: 0 }, 100);
         }
     };
-    Hand.prototype.playAction = function () {
-        egret.Tween.get(this.handArm, { loop: false }).to({ y: 200 }, 3000);
+    Hand.prototype.playAction = function (fun) {
+        var self = this;
+        egret.Tween.get(this.handArm, { loop: false }).to({ y: 240 }, 1500).call(function () {
+            if (Data.onWawaIndex == -1) {
+                egret.Tween.get(this, { loop: false }).to({ y: 0 }, 800).call(function () {
+                    fun(0);
+                });
+                egret.Tween.get(self.handL, { loop: false }).to({ rotation: 0 }, 150, egret.Ease.circOut);
+                egret.Tween.get(self.handR, { loop: false }).to({ rotation: 0 }, 150, egret.Ease.circOut);
+            }
+            else {
+                if (Data.cmd_winnig["state"] == 2) {
+                    fun(2);
+                    egret.Tween.get(this, { loop: false }).to({ y: 0 }, 800).call(function () {
+                        fun(0);
+                    });
+                    egret.Tween.get(self.handL, { loop: false }).to({ rotation: 0 }, 150, egret.Ease.circOut);
+                    egret.Tween.get(self.handR, { loop: false }).to({ rotation: 0 }, 150, egret.Ease.circOut);
+                }
+                else if (Data.cmd_winnig["state"] == 1) {
+                    fun(1);
+                    egret.Tween.get(this, { loop: false }).to({ y: 0 }, 800).call(function () {
+                        fun(0);
+                    });
+                    egret.Tween.get(self.handL, { loop: false }).to({ rotation: 0 }, 150, egret.Ease.circOut);
+                    egret.Tween.get(self.handR, { loop: false }).to({ rotation: 0 }, 150, egret.Ease.circOut);
+                }
+            }
+        });
         egret.Tween.get(this.handL, { loop: false }).to({ rotation: 30 }, 150, egret.Ease.circOut);
         egret.Tween.get(this.handR, { loop: false }).to({ rotation: -30 }, 150, egret.Ease.circOut);
     };

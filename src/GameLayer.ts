@@ -36,14 +36,18 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	private nameText:eui.Label = null;
 	public constructor() {
 		super();
-        this.addEventListener( eui.UIEvent.COMPLETE, this.uiCompHandler, this );
-		this.skinName = "resource/skins/gameLayer.exml";
 		// 计时器
 		var timer:egret.Timer = new egret.Timer(10,0);
         timer.addEventListener(egret.TimerEvent.TIMER,this.timerFunc,this);
         timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.timerComFunc,this);
         //开始计时
         timer.start();
+
+		this.skinName = "resource/skins/gameLayer.exml";
+		// 抓手
+		this.hand = new Hand();
+		this.showGroup.addChild(this.hand);
+        this.addEventListener( eui.UIEvent.COMPLETE, this.uiCompHandler, this );
 	}
 
 	private uiCompHandler():void {
@@ -51,8 +55,14 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		// 动画
 		var mcFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory( RES.getRes("lightAction_json"), RES.getRes("lightAction_png") );
 		var mc1:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData( "buling" ) );
-		this.lightGroup.addChild( mc1 );
+		this.lightGroup.addChild( mc1);
 		mc1.gotoAndPlay( "action" ,-1);
+
+		// wawa
+		for (var i = 0; i < this.wawaArray.length; i++) {
+			console.log(this.showGroup.getChildIndex(this.wawaArray[i]) + " =======");
+		}
+
 	}
 	
 	protected partAdded(partName:string,instance:any):void
@@ -74,10 +84,6 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		if (instance == this.wawa01 || instance == this.wawa02 || instance == this.wawa03 || instance == this.wawa04 || instance == this.wawa05) {
 			instance.texture = RES.getRes(Data.selectData.id + "_png");
 			this.wawaArray.push(instance);
-			// console.log(this.getChildIndex( instance ) + " ====");
-			if (instance == this.wawa04) {
-				// this.setChildIndex( this.wawa04, 20 );
-			}
 		}
 	}
 
@@ -85,9 +91,6 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	protected childrenCreated():void
 	{
 		super.childrenCreated();
-		// 抓手
-		this.hand = new Hand();
-		this.showGroup.addChild(this.hand);
 	}
 
 	private timerFunc(){
@@ -98,6 +101,26 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			if (this.hand.x > this.showGroup.width - 93) this.hand.x = this.showGroup.width - 93;
 			if (this.hand.y > 0) this.hand.y = 0;
 			if (this.hand.y < -70) this.hand.y = -70;
+			var shadowY = this.hand.y + 534;
+			// 影子和娃娃的层级显示
+			if (shadowY < this.wawaArray[4].y && shadowY > this.wawaArray[0].y) {
+				this.showGroup.setChildIndex( this.hand, 4 );
+			}else {
+				this.showGroup.setChildIndex( this.hand, 5 );
+			}
+			if (shadowY < this.wawaArray[0].y) {
+				this.showGroup.setChildIndex( this.hand, 1 );
+			}else {
+				this.showGroup.setChildIndex( this.hand, 4 );
+			}
+
+			// 检测碰撞
+			Data.onWawaIndex = -1;
+			for (var i = 0 ; i < this.wawaArray.length; i++) {
+				if (this.wawaArray[i].visible == true && Utils.isCheckCollide(new egret.Point(this.hand.x + 47, shadowY) , new egret.Rectangle(this.wawaArray[i].x-25, this.wawaArray[i].y-15, 50,30))){
+					Data.onWawaIndex = i;
+				}
+			}
 		}
     }
     private timerComFunc() {
@@ -163,7 +186,41 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 				this.addChild(task);
 			break;
 			case this.goBtn:
-				this.hand.playAction();
+				this.checkDirBtnStype(false);
+				var self = this;
+				var newWawa = null;
+				this.hand.playAction(function(type) { // 0: 在空白区域抓 1:抓到娃娃 2:抓到娃娃失败 
+					if (type == 0) {
+						egret.Tween.get(self.hand,{loop:false}).to({x:0,y:0},400).call(function(){
+							self.checkDirBtnStype(true);
+							self.startGroup.visible = true;
+							self.playGroup.visible = false;
+							if (Data.cmd_winnig["state"] == 1 && newWawa != null) {
+								console.log("提示抓到娃娃了");
+								egret.Tween.get(newWawa,{loop:false}).to({y:newWawa.y+225, alpha:0},200).call(function(){
+									newWawa.parent.removeChild(newWawa);
+									newWawa = null;
+								});
+							}
+						});
+					}else if (type == 2) {
+						var wawaNode = self.wawaArray[Data.onWawaIndex];
+						egret.Tween.get(wawaNode,{loop:false}).to({y:wawaNode.y-20},100).to({y:wawaNode.y},100);
+					}else if (type == 1) {
+						self.wawaArray[Data.onWawaIndex].visible = false;
+						if (newWawa == null) {
+							newWawa = new eui.Image(RES.getRes(Data.selectData.id+"_png"));
+							newWawa.y = self.hand.shadow.y;
+							newWawa.x = -20;
+							newWawa.scaleX = 0.4;
+							newWawa.scaleY = 0.4;
+							newWawa.anchorOffsetX = newWawa.width/2;
+							newWawa.anchorOffsetY = 280;
+							self.hand.addChild(newWawa);
+							egret.Tween.get(newWawa,{loop:false}).to({y:newWawa.y-225},800);
+						}
+					}
+				});
 			break;
 			case this.changeBtn:
                 AppCanvas.setGameState(2);
@@ -174,4 +231,12 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			break;
 		}
     }
+
+	private checkDirBtnStype(is:boolean) {
+		this.upBtn.touchEnabled = is;
+		this.downBtn.touchEnabled = is;
+		this.leftBtn.touchEnabled = is;
+		this.rightBtn.touchEnabled = is;
+		this.goBtn.touchEnabled = is;
+	}
 }

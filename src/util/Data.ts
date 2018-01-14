@@ -18,6 +18,9 @@ class Data {
     // 选中的娃娃信息
     public static selectData:any = null;
 
+    // 抓手停留在娃娃身上的index
+    public static onWawaIndex:number = -1;
+
     // 指令返回
     public static cmd_userInfo = null;
     public static cmd_winnig = null;

@@ -1,7 +1,7 @@
 class Hand extends eui.Component implements eui.UIComponent {
     private handL:eui.Image = null;
     private handR:eui.Image = null;
-    private shadow:eui.Image = null;
+    public shadow:eui.Image = null;
 
     private handArm:eui.Group = null;
     public constructor() {
@@ -36,8 +36,33 @@ class Hand extends eui.Component implements eui.UIComponent {
         }
     }
 
-    public playAction() {
-        egret.Tween.get(this.handArm,{loop:false}).to({y:200},3000);
+    public playAction(fun:Function) {
+        var self = this;
+        egret.Tween.get(this.handArm,{loop:false}).to({y:240},1500).call(function(){
+            if (Data.onWawaIndex == -1) { // 没有在娃娃位置
+                egret.Tween.get(this,{loop:false}).to({y:0},800).call(function(){
+                    fun(0);
+                });
+                egret.Tween.get(self.handL, {loop:false}).to({rotation:0}, 150, egret.Ease.circOut ); 
+                egret.Tween.get(self.handR, {loop:false}).to({rotation:0}, 150, egret.Ease.circOut ); 
+            }else {
+                if (Data.cmd_winnig["state"] == 2) { // 夹不中
+                    fun(2);
+                    egret.Tween.get(this,{loop:false}).to({y:0},800).call(function(){
+                        fun(0);
+                    });
+                    egret.Tween.get(self.handL, {loop:false}).to({rotation:0}, 150, egret.Ease.circOut ); 
+                    egret.Tween.get(self.handR, {loop:false}).to({rotation:0}, 150, egret.Ease.circOut ); 
+                }else if (Data.cmd_winnig["state"] == 1){ // 夹中
+                    fun(1);
+                    egret.Tween.get(this,{loop:false}).to({y:0},800).call(function(){
+                        fun(0);
+                    });
+                    egret.Tween.get(self.handL, {loop:false}).to({rotation:0}, 150, egret.Ease.circOut ); 
+                    egret.Tween.get(self.handR, {loop:false}).to({rotation:0}, 150, egret.Ease.circOut ); 
+                }
+            }
+        });
         egret.Tween.get(this.handL, {loop:false}).to({rotation:30}, 150, egret.Ease.circOut ); 
         egret.Tween.get(this.handR, {loop:false}).to({rotation:-30}, 150, egret.Ease.circOut ); 
     }
