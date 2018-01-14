@@ -13,13 +13,14 @@ var Show = (function (_super) {
         _this.closeBtn = null;
         _this.editText = null;
         _this.textInput = null;
+        _this.ciBtn = null;
         _this.skinName = "resource/skins/show.exml";
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
         return _this;
     }
     Show.prototype.partAdded = function (partName, instance) {
         _super.prototype.partAdded.call(this, partName, instance);
-        if (instance == this.closeBtn) {
+        if (instance == this.closeBtn || instance == this.ciBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         }
         if (instance == this.editText) {
@@ -37,6 +38,10 @@ var Show = (function (_super) {
         switch (e.target) {
             case this.closeBtn:
                 this.parent.removeChild(this);
+                break;
+            case this.ciBtn:
+                console.log(" =======");
+                AppCanvas.getChooseImage();
                 break;
         }
     };

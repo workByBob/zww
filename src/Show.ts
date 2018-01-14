@@ -3,6 +3,8 @@ class Show extends eui.Component implements eui.UIComponent {
 	private closeBtn:eui.Button = null;
 	private editText:eui.EditableText = null;
 	private textInput:eui.TextInput = null;
+	private ciBtn:eui.Button = null;
+	private yuBtn:eui.Button = null;
 	public constructor() {
 		super();
 		this.skinName = "resource/skins/show.exml";
@@ -11,7 +13,7 @@ class Show extends eui.Component implements eui.UIComponent {
 
     protected partAdded(partName:string, instance:any) {
         super.partAdded(partName, instance);
-		if (instance == this.closeBtn) {
+		if (instance == this.closeBtn || instance == this.ciBtn || instance == this.yuBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
 		}
 		if (instance == this.editText) {
@@ -32,6 +34,12 @@ class Show extends eui.Component implements eui.UIComponent {
 		switch(e.target) {
 			case this.closeBtn:
 				this.parent.removeChild(this);
+			break;
+			case this.ciBtn:
+				AppCanvas.getChooseImage();
+			break;
+			case this.yuBtn:
+
 			break;
 		}
     }

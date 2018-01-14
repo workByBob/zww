@@ -50,11 +50,11 @@ var GameLayer = (function (_super) {
         timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, _this.timerComFunc, _this);
         //开始计时
         timer.start();
+        _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
         _this.skinName = "resource/skins/gameLayer.exml";
         // 抓手
         _this.hand = new Hand();
         _this.showGroup.addChild(_this.hand);
-        _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
         return _this;
     }
     GameLayer.prototype.uiCompHandler = function () {
@@ -64,10 +64,11 @@ var GameLayer = (function (_super) {
         var mc1 = new egret.MovieClip(mcFactory.generateMovieClipData("buling"));
         this.lightGroup.addChild(mc1);
         mc1.gotoAndPlay("action", -1);
-        // wawa
-        for (var i = 0; i < this.wawaArray.length; i++) {
-            console.log(this.showGroup.getChildIndex(this.wawaArray[i]) + " =======");
-        }
+        // var mydisp:any = this.wawa01;
+        // var rt: egret.RenderTexture = new egret.RenderTexture();   //建立缓冲画布
+        // rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height));  //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
+        // var imageBase64:string = rt.toDataURL("image/png");  //转换为图片base64。  （对的你没看错！就这么3行。。。。）
+        // alert(imageBase64); 
     };
     GameLayer.prototype.partAdded = function (partName, instance) {
         _super.prototype.partAdded.call(this, partName, instance);

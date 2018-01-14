@@ -35,7 +35,7 @@ class Main extends eui.UILayer {
         egret.registerImplementation("eui.IThemeAdapter",new ThemeAdapter());
 
         // 微信验证
-        var isTest = false;
+        var isTest = true;
         if (Utils.isWeiXin() && isTest) {
             var wx_code = Utils.getArgsValue(Utils.getCurrHref(), "code");
             if (wx_code != ""){
@@ -128,8 +128,8 @@ class Main extends eui.UILayer {
             case 4: // 其他界面
             break;
         }
-
     }
+
     private wxTicketListenerFun(e:egret.Event){
         var request = <egret.HttpRequest>e.currentTarget;
         // console.log("get data : ",request.response);
@@ -245,6 +245,31 @@ class Main extends eui.UILayer {
             alert(JSON.stringify(res) + " bodyMenuShareAppMessage");
         };
         wx.onMenuShareAppMessage(bodyMenuShareAppMessage);
+    }
+
+    public getChooseImage() {
+        var self=this;
+        var body = {
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+
+                alert(" === "+localIds);
+                RES.getResByUrl(localIds[0],function(texture:egret.Texture){
+                var bitmap:egret.Bitmap=new egret.Bitmap(texture);
+                self.addChild(bitmap)
+
+                    var mydisp:any = bitmap;
+                    var rt: egret.RenderTexture = new egret.RenderTexture();   //建立缓冲画布
+                    rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height));  //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
+                    var imageBase64:string = rt.toDataURL("image/png");  //转换为图片base64。  （对的你没看错！就这么3行。。。。）
+                    alert(imageBase64); 
+                },self,RES.ResourceItem.TYPE_IMAGE)
+            }
+        }
+        wx.chooseImage(body);
     }
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。

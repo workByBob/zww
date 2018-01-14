@@ -43,11 +43,11 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
         //开始计时
         timer.start();
 
+        this.addEventListener( eui.UIEvent.COMPLETE, this.uiCompHandler, this );
 		this.skinName = "resource/skins/gameLayer.exml";
 		// 抓手
 		this.hand = new Hand();
 		this.showGroup.addChild(this.hand);
-        this.addEventListener( eui.UIEvent.COMPLETE, this.uiCompHandler, this );
 	}
 
 	private uiCompHandler():void {
@@ -58,11 +58,11 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		this.lightGroup.addChild( mc1);
 		mc1.gotoAndPlay( "action" ,-1);
 
-		// wawa
-		for (var i = 0; i < this.wawaArray.length; i++) {
-			console.log(this.showGroup.getChildIndex(this.wawaArray[i]) + " =======");
-		}
-
+		// var mydisp:any = this.wawa01;
+		// var rt: egret.RenderTexture = new egret.RenderTexture();   //建立缓冲画布
+		// rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height));  //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
+		// var imageBase64:string = rt.toDataURL("image/png");  //转换为图片base64。  （对的你没看错！就这么3行。。。。）
+		// alert(imageBase64); 
 	}
 	
 	protected partAdded(partName:string,instance:any):void

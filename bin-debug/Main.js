@@ -26,7 +26,7 @@ var Main = (function (_super) {
         egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
         // 微信验证
-        var isTest = false;
+        var isTest = true;
         if (Utils.isWeiXin() && isTest) {
             var wx_code = Utils.getArgsValue(Utils.getCurrHref(), "code");
             if (wx_code != "") {
@@ -225,6 +225,28 @@ var Main = (function (_super) {
             alert(JSON.stringify(res) + " bodyMenuShareAppMessage");
         };
         wx.onMenuShareAppMessage(bodyMenuShareAppMessage);
+    };
+    Main.prototype.getChooseImage = function () {
+        var self = this;
+        var body = {
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                alert(" === " + localIds);
+                RES.getResByUrl(localIds[0], function (texture) {
+                    var bitmap = new egret.Bitmap(texture);
+                    self.addChild(bitmap);
+                    var mydisp = bitmap;
+                    var rt = new egret.RenderTexture(); //建立缓冲画布
+                    rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height)); //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
+                    var imageBase64 = rt.toDataURL("image/png"); //转换为图片base64。  （对的你没看错！就这么3行。。。。）
+                    alert(imageBase64);
+                }, self, RES.ResourceItem.TYPE_IMAGE);
+            }
+        };
+        wx.chooseImage(body);
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
