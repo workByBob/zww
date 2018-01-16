@@ -10,6 +10,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	private showBtn:eui.Button = null;
 	private bagBtn:eui.Button = null;
 	private lightGroup:eui.Group = null;
+	private wawaInfoBtn:eui.Button = null;
 
 	private showGroup:eui.Group = null;
 	private wawa01:eui.Image = null;
@@ -70,7 +71,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		super.partAdded(partName,instance);
 		if (instance == this.startBtn || instance == this.changeBtn || instance == this.wechatBtn || instance == this.giftBtn 
 		|| instance == this.invateBtn || instance == this.kefuBtn || instance == this.payBtn || instance == this.taskBtn 
-		|| instance == this.showBtn || instance == this.bagBtn || instance == this.goBtn) {
+		|| instance == this.showBtn || instance == this.bagBtn || instance == this.goBtn || instance == this.wawaInfoBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
 		}
 		if (instance == this.leftBtn || instance == this.rightBtn || instance == this.upBtn || instance == this.downBtn ) {
@@ -228,6 +229,10 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			case this.showBtn:
 				var show = new Show();
 				this.addChild(show);
+			break;
+			case this.wawaInfoBtn:
+				var wawa = new Info();
+				this.addChild(wawa);
 			break;
 		}
     }

@@ -10,12 +10,7 @@ var AppCanvas = null;
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.title = "";
-        _this.link = "";
-        _this.imgUrl = "";
-        _this.desc = "";
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Main.prototype.createChildren = function () {
         _super.prototype.createChildren.call(this);
@@ -177,7 +172,7 @@ var Main = (function (_super) {
         var url = encodeURIComponent(location.href.split("#")[0]);
         this.link = url;
         this.title = "就爱夹娃娃";
-        this.desc = Data.weChat_name + "抓娃娃高手";
+        this.desc = "抓娃娃高手";
         this.imgUrl = Data.weChat_headUrl;
         this.getWeChatShareTimeLine();
         this.getWEChatShareAppMessage();
@@ -188,14 +183,13 @@ var Main = (function (_super) {
         bodyMenuShareTimeLine.title = this.title;
         bodyMenuShareTimeLine.link = this.link;
         bodyMenuShareTimeLine.imgUrl = this.imgUrl;
-        console.log(this.title + "  " + this.link + "  " + this.imgUrl);
-        bodyMenuShareTimeLine.trigger = function () {
+        bodyMenuShareTimeLine.trigger = function (res) {
             alert('用户点击分享到朋友圈');
         };
-        bodyMenuShareTimeLine.success = function () {
+        bodyMenuShareTimeLine.success = function (res) {
             alert('已分享');
         };
-        bodyMenuShareTimeLine.cancel = function () {
+        bodyMenuShareTimeLine.cancel = function (res) {
             alert('已取消');
         };
         bodyMenuShareTimeLine.fail = function (res) {
@@ -212,13 +206,13 @@ var Main = (function (_super) {
         bodyMenuShareAppMessage.imgUrl = this.imgUrl;
         bodyMenuShareAppMessage.type = 'link';
         bodyMenuShareAppMessage.dataUrl = '';
-        bodyMenuShareAppMessage.trigger = function () {
+        bodyMenuShareAppMessage.trigger = function (res) {
             alert('用户点击发送给朋友');
         };
-        bodyMenuShareAppMessage.success = function () {
+        bodyMenuShareAppMessage.success = function (res) {
             alert('已分享');
         };
-        bodyMenuShareAppMessage.cancel = function () {
+        bodyMenuShareAppMessage.cancel = function (res) {
             alert('已取消');
         };
         bodyMenuShareAppMessage.fail = function (res) {

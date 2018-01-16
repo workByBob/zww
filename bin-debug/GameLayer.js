@@ -21,6 +21,7 @@ var GameLayer = (function (_super) {
         _this.showBtn = null;
         _this.bagBtn = null;
         _this.lightGroup = null;
+        _this.wawaInfoBtn = null;
         _this.showGroup = null;
         _this.wawa01 = null;
         _this.wawa02 = null;
@@ -74,7 +75,7 @@ var GameLayer = (function (_super) {
         _super.prototype.partAdded.call(this, partName, instance);
         if (instance == this.startBtn || instance == this.changeBtn || instance == this.wechatBtn || instance == this.giftBtn
             || instance == this.invateBtn || instance == this.kefuBtn || instance == this.payBtn || instance == this.taskBtn
-            || instance == this.showBtn || instance == this.bagBtn || instance == this.goBtn) {
+            || instance == this.showBtn || instance == this.bagBtn || instance == this.goBtn || instance == this.wawaInfoBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         }
         if (instance == this.leftBtn || instance == this.rightBtn || instance == this.upBtn || instance == this.downBtn) {
@@ -232,6 +233,10 @@ var GameLayer = (function (_super) {
             case this.showBtn:
                 var show = new Show();
                 this.addChild(show);
+                break;
+            case this.wawaInfoBtn:
+                var wawa = new Info();
+                this.addChild(wawa);
                 break;
         }
     };

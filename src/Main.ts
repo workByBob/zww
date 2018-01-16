@@ -186,17 +186,17 @@ class Main extends eui.UILayer {
         ];
         wx.config(bodyConfig);
     }
-    private title = "";
-    private link = "";
-    private imgUrl = "";
-    private desc = "";
+    private title:string;
+    private link:string;
+    private imgUrl:string;
+    private desc:string;
 
     // type: 0, 进界面 1, 截完图上传成功
     public checkShareWord() {
         var url = encodeURIComponent(location.href.split("#")[0]);
         this.link = url;
         this.title = "就爱夹娃娃";
-        this.desc = Data.weChat_name + "抓娃娃高手";
+        this.desc =  "抓娃娃高手";
         this.imgUrl = Data.weChat_headUrl;
         this.getWeChatShareTimeLine();
         this.getWEChatShareAppMessage();
@@ -208,17 +208,16 @@ class Main extends eui.UILayer {
         bodyMenuShareTimeLine.title = this.title;
         bodyMenuShareTimeLine.link = this.link;
         bodyMenuShareTimeLine.imgUrl = this.imgUrl;
-        console.log(this.title + "  " + this.link + "  " + this.imgUrl);
-        bodyMenuShareTimeLine.trigger = () => {
-           alert('用户点击分享到朋友圈');
+        bodyMenuShareTimeLine.trigger = function(res) {
+            alert('用户点击分享到朋友圈');
         };
-        bodyMenuShareTimeLine.success = ()=> {
-           alert('已分享');
+        bodyMenuShareTimeLine.success = function(res) {
+            alert('已分享');
         };
-        bodyMenuShareTimeLine.cancel = ()=> {
-           alert('已取消');
+        bodyMenuShareTimeLine.cancel = function(res) {
+            alert('已取消');
         };
-        bodyMenuShareTimeLine.fail = (res)=> {
+        bodyMenuShareTimeLine.fail = function(res) {
             alert(JSON.stringify(res) + " bodyMenuShareTimeLine");
         };
         wx.onMenuShareTimeline(bodyMenuShareTimeLine);
@@ -232,16 +231,16 @@ class Main extends eui.UILayer {
         bodyMenuShareAppMessage.imgUrl = this.imgUrl;
         bodyMenuShareAppMessage.type = 'link';
         bodyMenuShareAppMessage.dataUrl = '';
-        bodyMenuShareAppMessage.trigger = ()=> {
+        bodyMenuShareAppMessage.trigger = function(res) {
            alert('用户点击发送给朋友');
         };
-        bodyMenuShareAppMessage.success = ()=> {
+        bodyMenuShareAppMessage.success = function(res) {
            alert('已分享');
         };
-        bodyMenuShareAppMessage.cancel = ()=> {
+        bodyMenuShareAppMessage.cancel = function(res) {
            alert('已取消');
         };
-        bodyMenuShareAppMessage.fail = (res)=> {
+        bodyMenuShareAppMessage.fail = function(res) {
             alert(JSON.stringify(res) + " bodyMenuShareAppMessage");
         };
         wx.onMenuShareAppMessage(bodyMenuShareAppMessage);

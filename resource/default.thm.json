@@ -34,6 +34,7 @@
     "resource/skins/choiceWWCell.exml",
     "resource/skins/gameLayer.exml",
     "resource/skins/hand.exml",
+    "resource/skins/info.exml",
     "resource/skins/load.exml",
     "resource/skins/loginGift.exml",
     "resource/skins/recharge.exml",
