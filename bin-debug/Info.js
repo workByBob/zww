@@ -58,7 +58,7 @@ var Info = (function (_super) {
                 this.nameText.text = Data.selectData["name"];
                 this.colorText.text = Data.selectData["color"];
                 this.sizeText.text = Data.selectData["size"];
-                this.weightText.text = "?";
+                this.weightText.text = Data.selectData["weight"];
                 break;
         }
     };

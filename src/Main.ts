@@ -83,7 +83,6 @@ class Main extends eui.UILayer {
         //Config loading process interface
         //设置加载进度界面
         RES.loadGroup("loading", 1);
-        this.setGameState(1);
         // 微信签名认证
         if (Utils.isWeiXin()) {
             var url = "http://wawa.sz-ayx.com/index.php/wap/Unionid/jssign?url="+encodeURIComponent(location.href.split("#")[0]); 
@@ -94,12 +93,13 @@ class Main extends eui.UILayer {
             request.send();
             request.addEventListener(egret.Event.COMPLETE, this.wxTicketListenerFun, this);
         }
-
+        var self = this;
         // 获取基本信息
         Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, function(e:egret.Event) {
             var request = <egret.HttpRequest>e.currentTarget;
             console.log("userInfo data : ",request.response);
             Data.cmd_userInfo = JSON.parse(request.response);
+            self.setGameState(1);
         });
     }
 
@@ -246,30 +246,6 @@ class Main extends eui.UILayer {
         wx.onMenuShareAppMessage(bodyMenuShareAppMessage);
     }
 
-    public getChooseImage() {
-        var self=this;
-        var body = {
-            count: 1, // 默认9
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function (res) {
-                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-
-                alert(" === "+localIds);
-                RES.getResByUrl(localIds[0],function(texture:egret.Texture){
-                var bitmap:egret.Bitmap=new egret.Bitmap(texture);
-                self.addChild(bitmap)
-
-                    var mydisp:any = bitmap;
-                    var rt: egret.RenderTexture = new egret.RenderTexture();   //建立缓冲画布
-                    rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height));  //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
-                    var imageBase64:string = rt.toDataURL("image/png");  //转换为图片base64。  （对的你没看错！就这么3行。。。。）
-                    alert(imageBase64); 
-                },self,RES.ResourceItem.TYPE_IMAGE)
-            }
-        }
-        wx.chooseImage(body);
-    }
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
      * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.

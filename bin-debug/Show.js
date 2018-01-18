@@ -12,28 +12,26 @@ var Show = (function (_super) {
         var _this = _super.call(this) || this;
         _this.closeBtn = null;
         _this.editText = null;
-        _this.textInput = null;
         _this.ciBtn = null;
-        _this.yuBtn = null;
-        _this.skinName = "resource/skins/show.exml";
+        _this.showWrite = null;
+        _this.sureBtn = null;
+        _this.mBmp = null;
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
+        _this.skinName = "resource/skins/show.exml";
         return _this;
     }
     Show.prototype.partAdded = function (partName, instance) {
         _super.prototype.partAdded.call(this, partName, instance);
-        if (instance == this.closeBtn || instance == this.ciBtn || instance == this.yuBtn) {
+        if (instance == this.closeBtn || instance == this.ciBtn || instance == this.sureBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         }
         if (instance == this.editText) {
-        }
-        if (instance == this.textInput) {
         }
     };
     Show.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
     };
     Show.prototype.uiCompHandler = function () {
-        this.textInput.textDisplay.multiline = true;
     };
     Show.prototype.onButtonClick = function (e) {
         switch (e.target) {
@@ -41,11 +39,49 @@ var Show = (function (_super) {
                 this.parent.removeChild(this);
                 break;
             case this.ciBtn:
-                AppCanvas.getChooseImage();
+                UploadImageTool.showChoose(this.onData, this);
                 break;
-            case this.yuBtn:
+            case this.sureBtn:
+                // 转base64
+                var mydisp = this.mBmp;
+                var rt = new egret.RenderTexture(); //建立缓冲画布
+                rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height)); //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
+                var imageBase64 = rt.toDataURL("image/jpeg"); //转换为图片base64。  
+                console.log(imageBase64);
+                if (this.mBmp == null) {
+                    alert("没有上传自己和娃娃的美照～");
+                }
+                if (this.editText.text == "" || this.editText.text.length < 30) {
+                    alert("请输入不少于30字的玩家秀内容");
+                }
                 break;
         }
+    };
+    Show.prototype.onData = function (texture) {
+        console.log(" ===============");
+        Data.textureHead = texture;
+        this.drawTextureHead();
+    };
+    Show.prototype.drawTextureHead = function () {
+        var self = this;
+        AppCanvas.addChild(new PhotoClip(Data.textureHead, function (texture_) {
+            if (self.mBmp != null) {
+                self.mBmp.parent.removeChild(self.mBmp);
+                self.mBmp = null;
+            }
+            self.mBmp = new egret.Bitmap();
+            self.showWrite.addChild(self.mBmp);
+            self.mBmp.texture = texture_;
+            self.mBmp.x = self.ciBtn.x;
+            self.mBmp.y = self.ciBtn.y;
+            // 按钮隐藏
+            // self.ciBtn.visible = false;
+            // self.ciBtn.touchEnabled = false;
+            // 等比例缩小
+            var width_ = 50 / self.mBmp.width;
+            self.mBmp.width = width_ * self.mBmp.width;
+            self.mBmp.height *= width_;
+        }));
     };
     return Show;
 }(eui.Component));

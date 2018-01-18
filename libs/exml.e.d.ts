@@ -64,6 +64,8 @@ declare class load extends eui.Skin{
 }
 declare class loginGift extends eui.Skin{
 }
+declare class photoClip extends eui.Skin{
+}
 declare class recharge extends eui.Skin{
 }
 declare class rechargeCell extends eui.Skin{

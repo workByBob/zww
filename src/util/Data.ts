@@ -17,6 +17,8 @@ class Data {
     public static wawaJson = null;
     // 选中的娃娃信息
     public static selectData:any = null;
+    // 当前选中的头像纹理
+    public static textureHead: egret.RenderTexture
 
     // 抓手停留在娃娃身上的index
     public static onWawaIndex:number = -1;

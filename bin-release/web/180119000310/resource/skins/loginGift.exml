@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="loginGift" width="540" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="bgEffect13_png" x="0" y="0" width="100%" height="100%"/>
+	<e:Image source="normalBg_png" horizontalCenter="0" verticalCenter="0"/>
+	<e:Image source="bgEffect05_png" x="32" y="110"/>
+	<e:Image source="bgEffect10_png" x="321" y="721"/>
+	<e:Image source="bgEffect07_png" y="196" horizontalCenter="0"/>
+	<e:Image source="bgEffect06_png" y="243" horizontalCenter="0"/>
+	<e:Button id="closeBtn" label="close" x="397" y="175"/>
+</e:Skin>

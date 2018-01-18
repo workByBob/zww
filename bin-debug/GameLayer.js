@@ -22,6 +22,7 @@ var GameLayer = (function (_super) {
         _this.bagBtn = null;
         _this.lightGroup = null;
         _this.wawaInfoBtn = null;
+        _this.noticeLabel = null;
         _this.showGroup = null;
         _this.wawa01 = null;
         _this.wawa02 = null;
@@ -30,7 +31,9 @@ var GameLayer = (function (_super) {
         _this.wawa05 = null;
         _this.wawaArray = [];
         _this.startGroup = null;
+        _this.prizeLabel = null;
         _this.playGroup = null;
+        _this.scoreText = null;
         // 方向键
         _this.leftBtn = null;
         _this.rightBtn = null;
@@ -65,11 +68,16 @@ var GameLayer = (function (_super) {
         var mc1 = new egret.MovieClip(mcFactory.generateMovieClipData("buling"));
         this.lightGroup.addChild(mc1);
         mc1.gotoAndPlay("action", -1);
-        // var mydisp:any = this.wawa01;
-        // var rt: egret.RenderTexture = new egret.RenderTexture();   //建立缓冲画布
-        // rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height));  //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
-        // var imageBase64:string = rt.toDataURL("image/png");  //转换为图片base64。  （对的你没看错！就这么3行。。。。）
-        // alert(imageBase64); 
+        // 显示单价
+        this.prizeLabel.text = Data.selectData["cost"];
+        // 第一次刷新总金币
+        this.setGameScore(Data.cmd_userInfo["userCoin"]);
+        this.showNotice("欢迎来到 就爱抓娃娃 房间～");
+    };
+    GameLayer.prototype.showNotice = function (str) {
+        this.noticeLabel.text = str;
+        var width = this.noticeLabel.width;
+        egret.Tween.get(this.noticeLabel, { loop: true }).to({ x: 640 }, 0).to({ x: -width }, 10000);
     };
     GameLayer.prototype.partAdded = function (partName, instance) {
         _super.prototype.partAdded.call(this, partName, instance);
@@ -166,23 +174,28 @@ var GameLayer = (function (_super) {
     GameLayer.prototype.onButtonClick = function (e) {
         switch (e.target) {
             case this.startBtn:
-                this.startGroup.visible = false;
-                this.playGroup.visible = true;
-                // 是否抓中
-                Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function (e) {
-                    var request = e.currentTarget;
-                    console.log("winnig data : ", request.response);
-                    // 得到是否夹中结果
-                    Data.cmd_winnig = JSON.parse(request.response);
-                });
+                // 判断手中金币是否够
+                if (this.getGameScore() >= Data.selectData["cost"]) {
+                    this.startGroup.visible = false;
+                    this.playGroup.visible = true;
+                    // 是否抓中
+                    Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function (e) {
+                        var request = e.currentTarget;
+                        console.log("winnig data : ", request.response);
+                        // 得到是否夹中结果
+                        Data.cmd_winnig = JSON.parse(request.response);
+                    });
+                }
+                else {
+                    this.addChild(new Recharge());
+                }
                 break;
             case this.bagBtn:
                 var bag = new Bag();
                 this.addChild(bag);
                 break;
             case this.payBtn:
-                var charge = new Recharge();
-                this.addChild(charge);
+                this.addChild(new Recharge());
                 break;
             case this.taskBtn:
                 var task = new Task();
@@ -246,6 +259,15 @@ var GameLayer = (function (_super) {
         this.leftBtn.touchEnabled = is;
         this.rightBtn.touchEnabled = is;
         this.goBtn.touchEnabled = is;
+    };
+    // 刷新总金币 
+    GameLayer.prototype.setGameScore = function (score) {
+        Data.cmd_userInfo["userCoin"] = score;
+        this.scoreText.text = score;
+    };
+    // 获得金币
+    GameLayer.prototype.getGameScore = function () {
+        return Data.cmd_userInfo["userCoin"];
     };
     return GameLayer;
 }(eui.Component));
