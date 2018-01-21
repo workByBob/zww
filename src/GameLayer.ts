@@ -180,11 +180,12 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 					this.playGroup.visible = true;
 					// 是否抓中
 					Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function(e:egret.Event) {
+        				WaitConnect.closeConnect();
 						var request = <egret.HttpRequest>e.currentTarget;
 						console.log("winnig data : ",request.response);
 						// 得到是否夹中结果
 						Data.cmd_winnig = JSON.parse(request.response);
-					});
+					}, this);
 				}else {
 					this.addChild(new Recharge());
 				}

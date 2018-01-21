@@ -64,6 +64,9 @@ var Utils = (function () {
     Utils.getTimeMark = function () {
         return Date.parse(new Date().toString()) / 1000;
     };
+    Utils.getLocalTime = function (nS) {
+        return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+    };
     // 获取一段随机字符
     Utils.getRandomStr = function () {
         return Math.random().toString(36).substr(2, 15);
@@ -136,16 +139,16 @@ var Utils = (function () {
         console.log(a, b);
         return [a, b];
     };
-    // public static URLReq(url:string, data:string, fun:Function, thisObject:any) {
-    //     var urlLoader:egret.URLLoader = new egret.URLLoader();
-    //     var req:egret.URLRequest = new egret.URLRequest();
-    //     req.requestHeaders.push(new egret.URLRequestHeader("Content-Type", "text"));
-    //     req.url = url;
-    //     req.method = egret.URLRequestMethod.POST;
-    //     req.data = data;
-    //     urlLoader.load(req);
-    //     urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
-    // }
+    Utils.sendHttpPostServer = function (url, data, fun, thisObject) {
+        var urlLoader = new egret.URLLoader();
+        var req = new egret.URLRequest();
+        req.requestHeaders.push(new egret.URLRequestHeader("Content-Type", "text"));
+        req.url = url;
+        req.method = egret.URLRequestMethod.POST;
+        req.data = data;
+        urlLoader.load(req);
+        urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
+    };
     // public static URLLoader(url:string, fun:Function, thisObject:any) {
     //     var urlLoader:egret.URLLoader = new egret.URLLoader();
     //     var req:egret.URLRequest = new egret.URLRequest();
@@ -154,14 +157,15 @@ var Utils = (function () {
     //     urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
     //     urlLoader.load(req);
     // }
-    Utils.sendHttpServer = function (param, fun) {
+    Utils.sendHttpServer = function (param, fun, thisObject) {
         var url = param;
+        WaitConnect.openConnect();
         var request = new egret.HttpRequest();
         request.responseType = egret.HttpResponseType.TEXT;
         request.open(url, egret.HttpMethod.GET);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         request.send();
-        request.addEventListener(egret.Event.COMPLETE, fun, this);
+        request.addEventListener(egret.Event.COMPLETE, fun, thisObject);
     };
     return Utils;
 }());

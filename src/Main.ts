@@ -93,14 +93,14 @@ class Main extends eui.UILayer {
             request.send();
             request.addEventListener(egret.Event.COMPLETE, this.wxTicketListenerFun, this);
         }
-        var self = this;
         // 获取基本信息
         Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, function(e:egret.Event) {
+            WaitConnect.closeConnect();
             var request = <egret.HttpRequest>e.currentTarget;
             console.log("userInfo data : ",request.response);
             Data.cmd_userInfo = JSON.parse(request.response);
-            self.setGameState(1);
-        });
+            this.setGameState(1);
+        }, this);
     }
 
     public setGameState(state:number):void {

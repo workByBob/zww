@@ -41,7 +41,9 @@
     "resource/skins/recharge.exml",
     "resource/skins/rechargeCell.exml",
     "resource/skins/show.exml",
+    "resource/skins/showCell.exml",
     "resource/skins/task.exml",
-    "resource/skins/taskCell.exml"
+    "resource/skins/taskCell.exml",
+    "resource/skins/waitConnect.exml"
   ]
 }

@@ -23,7 +23,11 @@ Data.selectData = null;
 // 抓手停留在娃娃身上的index
 Data.onWawaIndex = -1;
 // 指令返回
+// 游戏基础信息
 Data.cmd_userInfo = null;
+// 夹娃娃返回成功
 Data.cmd_winnig = null;
+// 玩家秀返回玩家所有头像指令
+Data.cmd_pictures = null;
 __reflect(Data.prototype, "Data");
 //# sourceMappingURL=Data.js.map

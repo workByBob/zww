@@ -72,7 +72,11 @@ declare class rechargeCell extends eui.Skin{
 }
 declare class show extends eui.Skin{
 }
+declare class showCell extends eui.Skin{
+}
 declare class task extends eui.Skin{
 }
 declare class taskCell extends eui.Skin{
+}
+declare class waitConnect extends eui.Skin{
 }

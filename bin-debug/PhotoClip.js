@@ -17,6 +17,9 @@ var PhotoClip = (function (_super) {
         _this._texture = null;
         _this._callback = null;
         _this.rect = null;
+        _this.touchX = 0;
+        _this.touchY = 0;
+        _this.isTouch = false;
         _this._texture = texture;
         _this._callback = callback;
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
@@ -27,6 +30,12 @@ var PhotoClip = (function (_super) {
         _super.prototype.partAdded.call(this, partName, instance);
         if (instance == this.sureBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        }
+        if (instance == this.rect) {
+            instance.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
+            instance.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouch, this);
+            instance.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouch, this);
+            instance.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onTouch, this);
         }
     };
     PhotoClip.prototype.uiCompHandler = function () {
@@ -62,6 +71,32 @@ var PhotoClip = (function (_super) {
                 this.parent.removeChild(this);
                 this._callback(this._texture);
                 break;
+        }
+    };
+    PhotoClip.prototype.onTouch = function (e) {
+        if (e.type == egret.TouchEvent.TOUCH_BEGIN) {
+            this.touchX = e.localX;
+            this.touchY = e.localY;
+            this.isTouch = true;
+        }
+        else if (e.type == egret.TouchEvent.TOUCH_MOVE) {
+            if (!this.isTouch)
+                return;
+            this.mBmp.x += e.localX - this.touchX;
+            this.mBmp.y += e.localY - this.touchY;
+            this.touchX = e.localX;
+            this.touchY = e.localY;
+            if (this.mBmp.x >= this.rect.x)
+                this.mBmp.x = this.rect.x;
+            if (this.mBmp.x + this.mBmp.width <= this.rect.x + this.rect.width)
+                this.mBmp.x = this.rect.x - (this.mBmp.width - this.rect.width);
+            if (this.mBmp.y >= this.rect.y)
+                this.mBmp.y = this.rect.y;
+            if (this.mBmp.y + this.mBmp.height <= this.rect.y + this.rect.height)
+                this.mBmp.y = this.rect.y - (this.mBmp.height - this.rect.height);
+        }
+        else {
+            this.isTouch = false;
         }
     };
     return PhotoClip;

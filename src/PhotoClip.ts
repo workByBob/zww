@@ -20,6 +20,12 @@ class PhotoClip extends eui.Component implements eui.UIComponent {
 		if (instance == this.sureBtn) {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
 		}
+		if (instance == this.rect) {
+			instance.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
+			instance.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouch, this);
+			instance.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouch, this);
+			instance.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onTouch, this);
+		}
     }
 
 	private uiCompHandler():void {
@@ -30,6 +36,7 @@ class PhotoClip extends eui.Component implements eui.UIComponent {
 		this.mBmp.y = this.rect.y;
 		var rateW = 300/this.mBmp.width;
 		var rateH = 300/this.mBmp.height;
+
 		//建立缓冲画布
 		var rt: egret.RenderTexture = new egret.RenderTexture();  
 		if (this.mBmp.width >= this.mBmp.height) {
@@ -59,4 +66,29 @@ class PhotoClip extends eui.Component implements eui.UIComponent {
 			break;
 		}
     }
+
+	private touchX:number = 0;
+	private touchY:number = 0;
+	private isTouch:boolean = false;
+	private onTouch(e: egret.TouchEvent) {
+		if (e.type == egret.TouchEvent.TOUCH_BEGIN) {
+			this.touchX = e.localX;
+			this.touchY = e.localY;
+			this.isTouch = true;
+		}else if (e.type == egret.TouchEvent.TOUCH_MOVE) {
+			if (!this.isTouch) return;
+			this.mBmp.x += e.localX - this.touchX;
+			this.mBmp.y += e.localY - this.touchY;
+
+			this.touchX = e.localX;
+			this.touchY = e.localY;
+
+			if (this.mBmp.x >= this.rect.x) this.mBmp.x = this.rect.x;
+			if (this.mBmp.x + this.mBmp.width <= this.rect.x + this.rect.width) this.mBmp.x = this.rect.x - (this.mBmp.width - this.rect.width);
+			if (this.mBmp.y >= this.rect.y) this.mBmp.y = this.rect.y;
+			if (this.mBmp.y + this.mBmp.height <= this.rect.y + this.rect.height) this.mBmp.y = this.rect.y - (this.mBmp.height - this.rect.height)
+		}else {
+			this.isTouch = false;
+		}
+	}
 }

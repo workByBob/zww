@@ -11,7 +11,7 @@ var game_file_list = [
 	"libs/modules/socket/socket.js",
 	"libs/modules/weixinapi/weixinapi.js",
 	"exif/exif.js",
-	"bin-debug/PhotoClip.js",
+	"bin-debug/Recharge.js",
 	"bin-debug/AssetAdapter.js",
 	"bin-debug/ChoiceWW.js",
 	"bin-debug/ChoiceWWCell.js",
@@ -21,8 +21,8 @@ var game_file_list = [
 	"bin-debug/Info.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
+	"bin-debug/PhotoClip.js",
 	"bin-debug/Bag.js",
-	"bin-debug/Recharge.js",
 	"bin-debug/RechargeCell.js",
 	"bin-debug/Show.js",
 	"bin-debug/Task.js",
@@ -31,6 +31,7 @@ var game_file_list = [
 	"bin-debug/util/Data.js",
 	"bin-debug/util/UploadImageTool.js",
 	"bin-debug/util/Utils.js",
+	"bin-debug/util/WaitConnect.js",
 	"bin-debug/util/WebSocket.js",
 	//----auto game_file_list end----
 ];

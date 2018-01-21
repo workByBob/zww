@@ -79,14 +79,14 @@ var Main = (function (_super) {
             request.send();
             request.addEventListener(egret.Event.COMPLETE, this.wxTicketListenerFun, this);
         }
-        var self = this;
         // 获取基本信息
         Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, function (e) {
+            WaitConnect.closeConnect();
             var request = e.currentTarget;
             console.log("userInfo data : ", request.response);
             Data.cmd_userInfo = JSON.parse(request.response);
-            self.setGameState(1);
-        });
+            this.setGameState(1);
+        }, this);
     };
     Main.prototype.setGameState = function (state) {
         // 上次停留选娃娃界面则不清理

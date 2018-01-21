@@ -24,6 +24,10 @@ class Data {
     public static onWawaIndex:number = -1;
 
     // 指令返回
+    // 游戏基础信息
     public static cmd_userInfo = null;
+    // 夹娃娃返回成功
     public static cmd_winnig = null;
+    // 玩家秀返回玩家所有头像指令
+    public static cmd_pictures = null;  
 }
