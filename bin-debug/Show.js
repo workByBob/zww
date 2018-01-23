@@ -22,6 +22,7 @@ var Show = (function (_super) {
         _this.showMyself = null;
         _this.sureBtn = null;
         _this.mBmp = null;
+        _this._texture = null;
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
         _this.skinName = "resource/skins/show.exml";
         return _this;
@@ -60,8 +61,8 @@ var Show = (function (_super) {
         this.sendGetAllShowCommond();
     };
     Show.prototype.sendGetAllShowCommond = function () {
-        Utils.sendHttpServer("http://wawa.sz-ayx.com//api/Beautiful/Beautiful/userkey/" + Data.userKey, function (e) {
-            WaitConnect.closeConnect();
+        Utils.sendHttpServer("http://wawa.sz-ayx.com//api/Beautiful/Beautiful/userkey/" + Data.userKey, true, function (e) {
+            WaitConnect.closeConnect(500);
             var request = e.currentTarget;
             // console.log("Beautiful data : ",request.response);
             var data = JSON.parse(request.response);
@@ -69,6 +70,7 @@ var Show = (function (_super) {
                 // ok
                 // 得到用户所有头像数据
                 Data.cmd_pictures = eval(data["data"]);
+                // console.log("Beautiful data : ",Data.cmd_pictures);
                 var size = Data.cmd_pictures.length;
                 for (var i = 0; i < size; i++) {
                     var cell = new ShowCell(Data.cmd_pictures[i]);
@@ -92,7 +94,9 @@ var Show = (function (_super) {
                 break;
             case this.sureBtn:
                 // 转base64
-                var mydisp = this.mBmp;
+                var img = new egret.Bitmap();
+                img.texture = this._texture;
+                var mydisp = img;
                 var rt = new egret.RenderTexture(); //建立缓冲画布
                 rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height)); //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
                 var imageBase64 = rt.toDataURL("image/jpeg"); //转换为图片base64。  
@@ -105,11 +109,22 @@ var Show = (function (_super) {
                     alert("请输入不少于30字的玩家秀内容");
                     return;
                 }
-                Utils.sendHttpPostServer("http://wawa.sz-ayx.com/api/Beautiful/index/userkey/" + Data.userKey + "/contens/" + this.editText.text, imageBase64, function (e) {
-                    var request = e.currentTarget;
-                    console.log("Beautiful data : ", request.response);
-                    // 得到是否夹中结果
-                    // Data.cmd_winnig = JSON.parse(request.response);
+                WaitConnect.openConnect();
+                var sendDataStr = '{"userkey":"' + Data.userKey + '","data":"' + imageBase64 + '","contens":"' + Utils.getChar(this.editText.text, 45 * 3) + '"}';
+                Utils.sendHttpPostServer("http://wawa.sz-ayx.com/api/Beautiful/index", sendDataStr, function (e) {
+                    WaitConnect.closeConnect();
+                    // 上传头像
+                    console.log("Beautiful data : ", e.target.data);
+                    var cmd_data = JSON.parse(e.target.data);
+                    switch (cmd_data["state"]) {
+                        case "1":
+                            alert(cmd_data["msg"]);
+                            this.setShowState(this.showAll);
+                            break;
+                        case "2":
+                            alert(cmd_data["msg"]);
+                            break;
+                    }
                 }, this);
                 break;
             case this.publishBtn:
@@ -118,12 +133,14 @@ var Show = (function (_super) {
         }
     };
     Show.prototype.onData = function (texture) {
+        WaitConnect.closeConnect();
         Data.textureHead = texture;
         this.drawTextureHead();
     };
     Show.prototype.drawTextureHead = function () {
         var self = this;
         AppCanvas.addChild(new PhotoClip(Data.textureHead, function (texture_) {
+            self._texture = texture_;
             if (self.mBmp != null) {
                 self.mBmp.parent.removeChild(self.mBmp);
                 self.mBmp = null;
@@ -153,6 +170,7 @@ var ShowCell = (function (_super) {
         _this.nameLabel = null;
         _this.time = null;
         _this.img = null;
+        _this.headImg = null;
         _this._cellData = null;
         _this._cellData = cellData;
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
@@ -173,7 +191,7 @@ var ShowCell = (function (_super) {
         this.descLabel.height = 50;
         this.descLabel.wordWrap = true;
         // name 
-        this.nameLabel.text = this._cellData["uid"];
+        this.nameLabel.text = this._cellData["username"];
         this.nameLabel.anchorOffsetX = this.nameLabel.width / 2;
         // time
         this.time.text = Utils.getLocalTime(this._cellData["addtime"]);
@@ -194,6 +212,18 @@ var ShowCell = (function (_super) {
             imgReview.width *= rate;
             imgReview.height *= rate;
         };
+        // head
+        RES.getResByUrl(this._cellData["userheader"], getResComplete, this, RES.ResourceItem.TYPE_IMAGE);
+        function getResComplete(data) {
+            // this.headImg.source = data;
+            var imgReview = new egret.Bitmap(data);
+            var rate = this.headImg.width / imgReview.width;
+            imgReview.x = this.headImg.x;
+            imgReview.y = this.headImg.y;
+            this.addChild(imgReview);
+            imgReview.width *= rate;
+            imgReview.height *= rate;
+        }
     };
     return ShowCell;
 }(eui.Component));

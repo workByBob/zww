@@ -21,7 +21,7 @@ var Main = (function (_super) {
         egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
         // 微信验证
-        var isTest = true;
+        var isTest = false;
         if (Utils.isWeiXin() && isTest) {
             var wx_code = Utils.getArgsValue(Utils.getCurrHref(), "code");
             if (wx_code != "") {
@@ -60,6 +60,9 @@ var Main = (function (_super) {
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         RES.loadConfig("resource/default.res.json", "resource/");
     };
+    Main.prototype.getStage = function () {
+        return this.stage;
+    };
     /**
      * 配置文件加载完成,开始预加载皮肤主题资源和preload资源组。
      * Loading of configuration file is complete, start to pre-load the theme configuration file and the preload resource group
@@ -80,7 +83,7 @@ var Main = (function (_super) {
             request.addEventListener(egret.Event.COMPLETE, this.wxTicketListenerFun, this);
         }
         // 获取基本信息
-        Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, function (e) {
+        Utils.sendHttpServer("http://wawa.sz-ayx.com/api/userInfo/index/userkey/" + Data.userKey, false, function (e) {
             WaitConnect.closeConnect();
             var request = e.currentTarget;
             console.log("userInfo data : ", request.response);

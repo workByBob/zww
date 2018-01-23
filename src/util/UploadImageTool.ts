@@ -73,6 +73,7 @@ class UploadImageTool {
             UploadImageTool.loadingFun();
         }
 
+		WaitConnect.openConnect();
         var image: HTMLImageElement = document.createElement("img");
         image.onload = function () {
             EXIF.getData(file, function () {

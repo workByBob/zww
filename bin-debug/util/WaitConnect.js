@@ -21,11 +21,17 @@ var WaitConnect = (function (_super) {
         _super.prototype.childrenCreated.call(this);
     };
     WaitConnect.prototype.uiCompHandler = function () {
-        this.visible = false;
         var self = this;
-        egret.Tween.get(this, { loop: false }).wait(100).call(function () {
-            self.visible = true;
+        egret.Tween.get(this, { loop: false }).wait(20000).call(function () {
+            WaitConnect.closeConnect();
         });
+        // 动画
+        var mcFactory = new egret.MovieClipDataFactory(RES.getRes("wait_json"), RES.getRes("wait_png"));
+        var mc1 = new egret.MovieClip(mcFactory.generateMovieClipData("wait"));
+        mc1.x = AppCanvas.getStage().stageWidth / 2 - mc1.width / 2;
+        mc1.y = AppCanvas.getStage().stageHeight / 2 - mc1.height / 2;
+        this.addChild(mc1);
+        mc1.gotoAndPlay("connnect", -1);
     };
     WaitConnect.openConnect = function () {
         if (this.wait == null) {
@@ -33,11 +39,15 @@ var WaitConnect = (function (_super) {
             AppCanvas.addChild(this.wait);
         }
     };
-    WaitConnect.closeConnect = function () {
-        if (this.wait != null) {
-            this.wait.parent.removeChild(this.wait);
-            this.wait = null;
-        }
+    WaitConnect.closeConnect = function (waitTime) {
+        if (waitTime === void 0) { waitTime = 0; }
+        var self = this;
+        egret.Tween.get(this, { loop: false }).wait(waitTime).call(function () {
+            if (self.wait != null) {
+                self.wait.parent.removeChild(self.wait);
+                self.wait = null;
+            }
+        });
     };
     return WaitConnect;
 }(eui.Component));

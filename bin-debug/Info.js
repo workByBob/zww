@@ -48,6 +48,14 @@ var Info = (function (_super) {
         switch (target) {
             case this.zqCheck:
                 this.zqCheck.selected = true;
+                // 是否抓中/api/ Winnig/ wawalog
+                Utils.sendHttpServer("http://wawa.sz-ayx.com//api/Winnig/wawalog/userkey/" + Data.userKey, true, function (e) {
+                    WaitConnect.closeConnect();
+                    var request = e.currentTarget;
+                    console.log("wawalog data : ", request.response);
+                    // 得到是否夹中结果
+                    Data.cmd_wawaLog = JSON.parse(request.response);
+                }, this);
                 break;
             case this.wwCheck:
                 this.wwCheck.selected = true;

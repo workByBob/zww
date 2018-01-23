@@ -139,6 +139,14 @@ var Utils = (function () {
         console.log(a, b);
         return [a, b];
     };
+    Utils.getChar = function (_str, _len) {
+        var _ba = new egret.ByteArray;
+        _ba.writeUTFBytes(_str);
+        if (_ba.length < _len)
+            return _str;
+        _ba.position = 0;
+        return _ba.readUTFBytes(_len) + "...";
+    };
     Utils.sendHttpPostServer = function (url, data, fun, thisObject) {
         var urlLoader = new egret.URLLoader();
         var req = new egret.URLRequest();
@@ -148,6 +156,7 @@ var Utils = (function () {
         req.data = data;
         urlLoader.load(req);
         urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
+        console.log("userkey = " + data);
     };
     // public static URLLoader(url:string, fun:Function, thisObject:any) {
     //     var urlLoader:egret.URLLoader = new egret.URLLoader();
@@ -157,9 +166,10 @@ var Utils = (function () {
     //     urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
     //     urlLoader.load(req);
     // }
-    Utils.sendHttpServer = function (param, fun, thisObject) {
+    Utils.sendHttpServer = function (param, isShow, fun, thisObject) {
         var url = param;
-        WaitConnect.openConnect();
+        if (isShow)
+            WaitConnect.openConnect();
         var request = new egret.HttpRequest();
         request.responseType = egret.HttpResponseType.TEXT;
         request.open(url, egret.HttpMethod.GET);

@@ -29,5 +29,7 @@ Data.cmd_userInfo = null;
 Data.cmd_winnig = null;
 // 玩家秀返回玩家所有头像指令
 Data.cmd_pictures = null;
+// 抓到的娃娃记录
+Data.cmd_wawaLog = null;
 __reflect(Data.prototype, "Data");
 //# sourceMappingURL=Data.js.map

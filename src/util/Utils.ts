@@ -150,8 +150,22 @@ class Utils {
         return [a,b];
     }
 
+    public static getChar(_str: string,_len: number): string {  
+   
+        var _ba: egret.ByteArray = new egret.ByteArray;  
 
-    public static sendHttpPostServer(url:string, data:string, fun:Function, thisObject:any) {
+        _ba.writeUTFBytes(_str);  
+
+        if(_ba.length < _len) return _str;  
+
+        _ba.position = 0;  
+
+        return _ba.readUTFBytes(_len) + "...";  
+
+    }  
+
+
+    public static sendHttpPostServer(url:string, data:any, fun:Function, thisObject:any) {
         var urlLoader:egret.URLLoader = new egret.URLLoader();
         var req:egret.URLRequest = new egret.URLRequest();
         req.requestHeaders.push(new egret.URLRequestHeader("Content-Type", "text"));
@@ -160,6 +174,7 @@ class Utils {
         req.data = data;
         urlLoader.load(req);
         urlLoader.addEventListener(egret.Event.COMPLETE, fun, thisObject);
+        console.log("userkey = "+data)
     }
 
     // public static URLLoader(url:string, fun:Function, thisObject:any) {
@@ -171,9 +186,9 @@ class Utils {
     //     urlLoader.load(req);
     // }
 
-	public static sendHttpServer(param:string,fun:Function, thisObject:any) {
+	public static sendHttpServer( param:string, isShow:boolean, fun:Function, thisObject:any) {
 		var url = param;
-        WaitConnect.openConnect();
+        if (isShow) WaitConnect.openConnect();
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
 		request.open(url, egret.HttpMethod.GET);

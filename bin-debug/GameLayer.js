@@ -179,7 +179,7 @@ var GameLayer = (function (_super) {
                     this.startGroup.visible = false;
                     this.playGroup.visible = true;
                     // 是否抓中
-                    Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function (e) {
+                    Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, false, function (e) {
                         WaitConnect.closeConnect();
                         var request = e.currentTarget;
                         console.log("winnig data : ", request.response);

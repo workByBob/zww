@@ -179,7 +179,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 					this.startGroup.visible = false;
 					this.playGroup.visible = true;
 					// 是否抓中
-					Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, function(e:egret.Event) {
+					Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, false, function(e:egret.Event) {
         				WaitConnect.closeConnect();
 						var request = <egret.HttpRequest>e.currentTarget;
 						console.log("winnig data : ",request.response);

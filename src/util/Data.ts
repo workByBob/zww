@@ -18,7 +18,7 @@ class Data {
     // 选中的娃娃信息
     public static selectData:any = null;
     // 当前选中的头像纹理
-    public static textureHead: egret.RenderTexture
+    public static textureHead: egret.RenderTexture;
 
     // 抓手停留在娃娃身上的index
     public static onWawaIndex:number = -1;
@@ -30,4 +30,6 @@ class Data {
     public static cmd_winnig = null;
     // 玩家秀返回玩家所有头像指令
     public static cmd_pictures = null;  
+    // 抓到的娃娃记录
+    public static cmd_wawaLog = null;
 }

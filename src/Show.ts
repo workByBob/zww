@@ -13,6 +13,7 @@ class Show extends eui.Component implements eui.UIComponent {
 
 	private sureBtn:eui.Button = null;
     private mBmp:egret.Bitmap = null;
+	private _texture = null;
 
 	public constructor() {
 		super();
@@ -60,8 +61,8 @@ class Show extends eui.Component implements eui.UIComponent {
 	}
 
 	private sendGetAllShowCommond(){
-		Utils.sendHttpServer("http://wawa.sz-ayx.com//api/Beautiful/Beautiful/userkey/" + Data.userKey, function(e:egret.Event) {
-			WaitConnect.closeConnect();
+		Utils.sendHttpServer("http://wawa.sz-ayx.com//api/Beautiful/Beautiful/userkey/" + Data.userKey, true, function(e:egret.Event) {
+			WaitConnect.closeConnect(500);
 			var request = <egret.HttpRequest>e.currentTarget;
 			// console.log("Beautiful data : ",request.response);
 			var data = JSON.parse(request.response);
@@ -69,6 +70,7 @@ class Show extends eui.Component implements eui.UIComponent {
 				// ok
 				// 得到用户所有头像数据
 				Data.cmd_pictures = eval(data["data"]);
+				// console.log("Beautiful data : ",Data.cmd_pictures);
 				var size = Data.cmd_pictures.length;
 				for (var i = 0; i < size; i++) {
 					var cell = new ShowCell(Data.cmd_pictures[i]);
@@ -92,7 +94,9 @@ class Show extends eui.Component implements eui.UIComponent {
 			break;
 			case this.sureBtn:
 				// 转base64
-				var mydisp:any = this.mBmp;
+				var img = new egret.Bitmap()
+				img.texture = this._texture;
+				var mydisp:any = img;
 				var rt: egret.RenderTexture = new egret.RenderTexture();   //建立缓冲画布
 				rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height));  //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
 				var imageBase64:string = rt.toDataURL("image/jpeg");  //转换为图片base64。  
@@ -105,13 +109,24 @@ class Show extends eui.Component implements eui.UIComponent {
 					alert("请输入不少于30字的玩家秀内容");
 					return;
 				}
-
-				Utils.sendHttpPostServer("http://wawa.sz-ayx.com/api/Beautiful/index/userkey/" + Data.userKey + "/contens/" + this.editText.text, imageBase64, function(e:egret.Event) {
-					var request = <egret.HttpRequest>e.currentTarget;
-					console.log("Beautiful data : ",request.response);
-					// 得到是否夹中结果
-					// Data.cmd_winnig = JSON.parse(request.response);
+				WaitConnect.openConnect();
+			    var sendDataStr = '{"userkey":"'+Data.userKey+'","data":"'+ imageBase64 + '","contens":"'+Utils.getChar(this.editText.text, 45*3) +'"}';
+				Utils.sendHttpPostServer("http://wawa.sz-ayx.com/api/Beautiful/index" , sendDataStr, function(e:egret.Event) {
+					WaitConnect.closeConnect();
+					// 上传头像
+					console.log("Beautiful data : ",e.target.data);
+					var cmd_data = JSON.parse(e.target.data)
+					switch(cmd_data["state"]){
+						case "1":
+							alert(cmd_data["msg"]);
+							this.setShowState(this.showAll);
+						break;
+						case "2":
+							alert(cmd_data["msg"]);
+						break;
+					}
 				},this);
+
 			break;
 			case this.publishBtn:
 				this.setShowState(this.showWrite);
@@ -120,13 +135,16 @@ class Show extends eui.Component implements eui.UIComponent {
     }
 
     private onData(texture: egret.RenderTexture):void{
+		WaitConnect.closeConnect();
 		Data.textureHead = texture;
 		this.drawTextureHead();
     }
 
+
 	private drawTextureHead(){
 		var self = this;
 		AppCanvas.addChild(new PhotoClip(Data.textureHead, function(texture_){
+			self._texture = texture_;
 			if (self.mBmp != null) {
 				self.mBmp.parent.removeChild(self.mBmp);
 				self.mBmp = null;
@@ -156,6 +174,7 @@ class ShowCell extends eui.Component implements eui.UIComponent {
 	private nameLabel:eui.Label = null;
 	private time:eui.Label = null;
 	private img:eui.Image = null;
+	private headImg:eui.Image = null;
 	private _cellData = null;
 	public constructor(cellData) {
 		super();
@@ -179,7 +198,7 @@ class ShowCell extends eui.Component implements eui.UIComponent {
 		this.descLabel.height = 50;
 		this.descLabel.wordWrap = true;
 		// name 
-		this.nameLabel.text = this._cellData["uid"];
+		this.nameLabel.text = this._cellData["username"];
 		this.nameLabel.anchorOffsetX = this.nameLabel.width/2;
 		// time
 		this.time.text = Utils.getLocalTime(this._cellData["addtime"]);
@@ -197,6 +216,18 @@ class ShowCell extends eui.Component implements eui.UIComponent {
 			imgReview.x = this.img.x;
 			this.addChild(imgReview);
 			var rate = this.img.width/imgReview.width;
+			imgReview.width *= rate;
+			imgReview.height *= rate;
+		}
+		// head
+		RES.getResByUrl(this._cellData["userheader"], getResComplete, this, RES.ResourceItem.TYPE_IMAGE);
+		function getResComplete(data:any):void {
+			// this.headImg.source = data;
+            var imgReview:egret.Bitmap = new egret.Bitmap(data);
+			var rate = this.headImg.width/imgReview.width;
+            imgReview.x = this.headImg.x;
+            imgReview.y = this.headImg.y;
+            this.addChild(imgReview);
 			imgReview.width *= rate;
 			imgReview.height *= rate;
 		}
