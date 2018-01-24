@@ -34,6 +34,8 @@ var GameLayer = (function (_super) {
         _this.prizeLabel = null;
         _this.playGroup = null;
         _this.scoreText = null;
+        _this.luckyBar = null;
+        _this.luckyText = null;
         // 方向键
         _this.leftBtn = null;
         _this.rightBtn = null;
@@ -72,6 +74,8 @@ var GameLayer = (function (_super) {
         this.prizeLabel.text = Data.selectData["cost"];
         // 第一次刷新总金币
         this.setGameScore(Data.cmd_userInfo["userCoin"]);
+        // 第一次刷新幸运值
+        this.updateLuckyValue();
         this.showNotice("欢迎来到 就爱抓娃娃 房间～");
     };
     GameLayer.prototype.showNotice = function (str) {
@@ -219,6 +223,8 @@ var GameLayer = (function (_super) {
                                     newWawa = null;
                                 });
                             }
+                            // 每抓一次结束更新一次幸运值
+                            self.updateLuckyValue();
                         });
                     }
                     else if (type == 2) {
@@ -269,6 +275,23 @@ var GameLayer = (function (_super) {
     // 获得金币
     GameLayer.prototype.getGameScore = function () {
         return Data.cmd_userInfo["userCoin"];
+    };
+    GameLayer.prototype.updateLuckyValue = function () {
+        Utils.sendHttpServer("http://wawa.sz-ayx.com/api/Winnig/luck/userkey/" + Data.userKey, false, function (e) {
+            WaitConnect.closeConnect();
+            var request = e.currentTarget;
+            console.log("luck data : ", request.response);
+            // luck返回信息
+            var data = JSON.parse(request.response);
+            // 成功
+            if (data["state"] == "1") {
+                var luckValue = JSON.parse(data["data"])["luck"];
+                // bar
+                egret.Tween.get(this.luckyBar, { loop: false }).to({ width: 350 / 100 * luckValue }, 500);
+                // Label
+                this.luckyText.text = "幸运值：" + luckValue + "/100";
+            }
+        }, this);
     };
     return GameLayer;
 }(eui.Component));

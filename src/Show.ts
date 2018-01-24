@@ -100,7 +100,7 @@ class Show extends eui.Component implements eui.UIComponent {
 				var rt: egret.RenderTexture = new egret.RenderTexture();   //建立缓冲画布
 				rt.drawToTexture(mydisp, new egret.Rectangle(0, 0, mydisp.width, mydisp.height));  //将对象画到缓冲画布上（可指定画对象的某个区域，或画整个）
 				var imageBase64:string = rt.toDataURL("image/jpeg");  //转换为图片base64。  
-				console.log(imageBase64);
+				// console.log(imageBase64);
 				if (this.mBmp == null) {
 					alert("没有上传自己和娃娃的美照～");
 					return;

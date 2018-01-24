@@ -96,7 +96,7 @@
 	</e:Button>
 	<e:Image id="scoreBg" source="scoreBg_png" x="10.48" y="910.91"/>
 	<e:Label id="scoreText" text="9999" x="61.19" y="918.94" size="20"/>
-	<e:Image id="luckyBar" source="luckyBar_png" x="94.5" y="642.66" width="20" scale9Grid="6,0,8,20"/>
+	<e:Image id="luckyBar" source="luckyBar_png" x="94.5" y="642.66" width="350" scale9Grid="6,0,8,20"/>
 	<e:Label id="luckyText" text="幸运值：0/0" y="644" size="20" bold="true" horizontalCenter="0"/>
 	<e:Label id="nameText" text="我的名字" y="876" size="20" bold="true" horizontalCenter="-210" textColor="0xffffff" locked="true"/>
 	<e:Group id="startGroup" width="320" height="140" x="108" y="708">

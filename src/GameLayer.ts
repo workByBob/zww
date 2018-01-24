@@ -24,6 +24,8 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	private prizeLabel:eui.Label = null;
 	private playGroup:eui.Group = null;
 	private scoreText:eui.Label = null;
+	private luckyBar:eui.Image = null;
+	private luckyText:eui.Label = null;
 	// 方向键
 	private leftBtn:eui.Button = null;
 	private rightBtn:eui.Button = null;
@@ -66,6 +68,8 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		this.prizeLabel.text = Data.selectData["cost"];
 		// 第一次刷新总金币
 		this.setGameScore(Data.cmd_userInfo["userCoin"]);
+		// 第一次刷新幸运值
+		this.updateLuckyValue();
 
 		this.showNotice("欢迎来到 就爱抓娃娃 房间～");
 	}
@@ -218,6 +222,8 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 									newWawa = null;
 								});
 							}
+							// 每抓一次结束更新一次幸运值
+							self.updateLuckyValue();
 						});
 					}else if (type == 2) {
 						var wawaNode = self.wawaArray[Data.onWawaIndex];
@@ -268,5 +274,23 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
     // 获得金币
 	private getGameScore():number {
 		return Data.cmd_userInfo["userCoin"];
+	}
+
+	private updateLuckyValue() {
+		Utils.sendHttpServer("http://wawa.sz-ayx.com/api/Winnig/luck/userkey/" + Data.userKey , false, function(e:egret.Event) {
+			WaitConnect.closeConnect();
+			var request = <egret.HttpRequest>e.currentTarget;
+			console.log("luck data : ",request.response);
+			// luck返回信息
+			var data = JSON.parse(request.response);
+			// 成功
+			if (data["state"] == "1") {
+				var luckValue = JSON.parse(data["data"])["luck"];
+				// bar
+				egret.Tween.get(this.luckyBar, {loop:false}).to({width:350/100 * luckValue},500);
+				// Label
+				this.luckyText.text = "幸运值：" + luckValue + "/100";
+			}
+		}, this);
 	}
 }
