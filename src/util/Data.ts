@@ -13,6 +13,12 @@ class Data {
 
     public static userKey = "oexAxwoclOGqj-CFIq0NULqlx2xs";
 
+
+    public static share_link = encodeURIComponent(location.href.split("#")[0]);
+    public static share_title = "就爱夹娃娃";
+    public static share_desc =  "抓娃娃高手";
+    public static share_imgUrl = Data.weChat_headUrl;
+
     // 娃娃json数据表
     public static wawaJson = null;
     // 选中的娃娃信息

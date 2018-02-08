@@ -17,11 +17,22 @@ class Recharge extends eui.Component implements eui.UIComponent {
 	protected childrenCreated():void {
 		super.childrenCreated();
 
-		for (var i = 0; i < 6; i++) {
-			var cell = new RechargeCell();
-			cell.y = i * cell.height;
-			this.scrollG.addChild(cell);
-		}
+		Utils.sendHttpServer("http://wawa.sz-ayx.com/api/Buycoin/pull/userkey/" + Data.userKey , true, function(e:egret.Event) {
+			WaitConnect.closeConnect();
+			var request = <egret.HttpRequest>e.currentTarget;
+			// console.log("luck data : ",request.response);
+			// 充值列表
+			var info = JSON.parse(request.response);
+			if (info["state"] == "1") {
+				var data = eval(info["data"]);
+				console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					var cell = new RechargeCell();
+					cell.y = i * cell.height;
+					this.scrollG.addChild(cell);
+				}
+			}
+		}, this);
 	}
 
     private onButtonClick(e: egret.TouchEvent) {

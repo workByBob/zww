@@ -16,6 +16,10 @@ Data.wx_appId = "wxdfb3530f672883c1";
 // 微信sceret
 Data.wx_secret = "3703eb5b3f6eb5aa64d82fa553ed90e";
 Data.userKey = "oexAxwoclOGqj-CFIq0NULqlx2xs";
+Data.share_link = encodeURIComponent(location.href.split("#")[0]);
+Data.share_title = "就爱夹娃娃";
+Data.share_desc = "抓娃娃高手";
+Data.share_imgUrl = Data.weChat_headUrl;
 // 娃娃json数据表
 Data.wawaJson = null;
 // 选中的娃娃信息

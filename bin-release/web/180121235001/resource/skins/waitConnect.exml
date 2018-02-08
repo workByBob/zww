@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="waitConnect" width="540" height="960" xmlns:e="http://ns.egret.com/eui">
-	<e:Image source="bgEffect13_png" x="0" y="0" width="100%" height="100%" alpha="0.3"/>
-	<e:Label text="loading..." bottom="0" right="0" size="35" bold="true"/>
-</e:Skin>

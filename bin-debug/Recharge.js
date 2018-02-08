@@ -23,11 +23,22 @@ var Recharge = (function (_super) {
     };
     Recharge.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
-        for (var i = 0; i < 6; i++) {
-            var cell = new RechargeCell();
-            cell.y = i * cell.height;
-            this.scrollG.addChild(cell);
-        }
+        Utils.sendHttpServer("http://wawa.sz-ayx.com/api/Buycoin/pull/userkey/" + Data.userKey, true, function (e) {
+            WaitConnect.closeConnect();
+            var request = e.currentTarget;
+            // console.log("luck data : ",request.response);
+            // 充值列表
+            var info = JSON.parse(request.response);
+            if (info["state"] == "1") {
+                var data = eval(info["data"]);
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    var cell = new RechargeCell();
+                    cell.y = i * cell.height;
+                    this.scrollG.addChild(cell);
+                }
+            }
+        }, this);
     };
     Recharge.prototype.onButtonClick = function (e) {
         switch (e.target) {

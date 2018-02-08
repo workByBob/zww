@@ -21,7 +21,7 @@ var Main = (function (_super) {
         egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
         // 微信验证
-        var isTest = false;
+        var isTest = true;
         if (Utils.isWeiXin() && isTest) {
             var wx_code = Utils.getArgsValue(Utils.getCurrHref(), "code");
             if (wx_code != "") {
@@ -173,20 +173,15 @@ var Main = (function (_super) {
     };
     // type: 0, 进界面 1, 截完图上传成功
     Main.prototype.checkShareWord = function () {
-        var url = encodeURIComponent(location.href.split("#")[0]);
-        this.link = url;
-        this.title = "就爱夹娃娃";
-        this.desc = "抓娃娃高手";
-        this.imgUrl = Data.weChat_headUrl;
         this.getWeChatShareTimeLine();
         this.getWEChatShareAppMessage();
     };
     Main.prototype.getWeChatShareTimeLine = function () {
         // 监听“分享到朋友圈”
         var bodyMenuShareTimeLine = new BodyMenuShareTimeline();
-        bodyMenuShareTimeLine.title = this.title;
-        bodyMenuShareTimeLine.link = this.link;
-        bodyMenuShareTimeLine.imgUrl = this.imgUrl;
+        bodyMenuShareTimeLine.title = Data.share_title;
+        bodyMenuShareTimeLine.link = Data.share_link;
+        bodyMenuShareTimeLine.imgUrl = Data.share_imgUrl;
         bodyMenuShareTimeLine.trigger = function (res) {
             alert('用户点击分享到朋友圈');
         };
@@ -204,10 +199,10 @@ var Main = (function (_super) {
     Main.prototype.getWEChatShareAppMessage = function () {
         // 监听“分享给朋友”
         var bodyMenuShareAppMessage = new BodyMenuShareAppMessage();
-        bodyMenuShareAppMessage.title = this.title;
-        bodyMenuShareAppMessage.desc = this.desc;
-        bodyMenuShareAppMessage.link = this.link;
-        bodyMenuShareAppMessage.imgUrl = this.imgUrl;
+        bodyMenuShareAppMessage.title = Data.share_title;
+        bodyMenuShareAppMessage.desc = Data.share_desc;
+        bodyMenuShareAppMessage.link = Data.share_link;
+        bodyMenuShareAppMessage.imgUrl = Data.share_imgUrl;
         bodyMenuShareAppMessage.type = 'link';
         bodyMenuShareAppMessage.dataUrl = '';
         bodyMenuShareAppMessage.trigger = function (res) {
