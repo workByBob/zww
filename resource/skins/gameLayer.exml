@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="gameLayer" width="540" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Group id="showGroup" width="440" height="576" x="49" y="65" locked="true">
-		<e:Image source="showBg_png" x="0" y="0"/>
+		<e:Image source="showBg_png" x="-15" y="-8"/>
 		<e:Image id="wawa04" source="1001_png" x="223" y="479" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
 		<e:Image id="wawa05" source="1001_png" x="105" y="479" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
 		<e:Image id="wawa03" source="1001_png" x="337" y="479" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
 		<e:Image id="wawa02" source="1001_png" x="318" y="536" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
 		<e:Image id="wawa01" source="1001_png" x="199" y="536" scaleX="0.4" scaleY="0.4" anchorOffsetX="162" anchorOffsetY="280"/>
-		<e:Image id="winBox" source="winBox_png" x="1" y="564" anchorOffsetY="111" locked="true"/>
+		<e:Image id="winBox" source="winBox_png" x="-10" y="565" anchorOffsetY="111"/>
 	</e:Group>
 	<e:Image id="maskBg" source="gameBg_png" x="0" y="0" locked="true"/>
 	<e:Group id="lightGroup" width="100%" height="1" x="0" y="0" locked="true"/>
@@ -53,7 +53,7 @@
 			</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Button id="kefuBtn" label="" x="18.18" y="16.97">
+	<e:Button id="kefuBtn" label="" x="10.18" y="7">
 		<e:skinName>
 			<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="kefu_png" source.down="kefu_png" source.disabled="kefu_png"/>
@@ -61,7 +61,7 @@
 			</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Image id="friendsBg" source="friendsBg_png" x="494.86" y="126.09" anchorOffsetX="72"/>
+	<e:Image id="friendsBg" source="friendsBg_png" x="512" y="129.61" anchorOffsetX="72"/>
 	<e:Button id="payBtn" label="" x="210.61" y="895">
 		<e:skinName>
 		<e:Skin states="up,down,disabled">
@@ -99,7 +99,7 @@
 	<e:Image id="luckyBar" source="luckyBar_png" x="94.5" y="642.66" width="350" scale9Grid="6,0,8,20"/>
 	<e:Label id="luckyText" text="幸运值：0/0" y="644" size="20" bold="true" horizontalCenter="0"/>
 	<e:Label id="nameText" text="我的名字" y="876" size="20" bold="true" horizontalCenter="-210" textColor="0xffffff" locked="true"/>
-	<e:Group id="startGroup" width="320" height="140" x="108" y="708">
+	<e:Group id="startGroup" width="320" height="140" x="108" y="690">
 		<e:Button id="startBtn" label="" x="-48.02" y="19" scaleX="1" scaleY="1">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
@@ -131,7 +131,7 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Button id="upBtn" label="" x="25" y="-31.4">
+		<e:Button id="upBtn" label="" x="21" y="-31.4">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="upN_png" source.down="upD_png" source.disabled="upD_png"/>
@@ -147,7 +147,7 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Button id="downBtn" label="" x="25" y="64.6">
+		<e:Button id="downBtn" label="" x="23" y="64.6">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="downN_png" source.down="downD_png" source.disabled="downD_png"/>
@@ -163,5 +163,7 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
+		<e:Image source="timeBg_png" x="-78" y="-37" scaleX="1" scaleY="1"/>
+		<e:BitmapLabel id="timeOut" width="30" height="30" scaleX="1" scaleY="1" font="digi_fnt" text="15" verticalCenter="-91" horizontalCenter="-201" anchorOffsetX="15"/>
 	</e:Group>
 </e:Skin>

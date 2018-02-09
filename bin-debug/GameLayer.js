@@ -48,6 +48,9 @@ var GameLayer = (function (_super) {
         _this.handSpeedX = 0;
         _this.handSpeedY = 0;
         _this.nameText = null;
+        _this.timerOut = null;
+        _this.timeOut = null;
+        _this.maxTime = 15;
         _this.pointX = 0;
         _this.pointY = 0;
         // 计时器
@@ -77,6 +80,24 @@ var GameLayer = (function (_super) {
         // 第一次刷新幸运值
         this.updateLuckyValue();
         this.showNotice("欢迎来到 就爱抓娃娃 房间～");
+        // 计时器
+        this.timerOut = new egret.Timer(1000, 0);
+        this.timerOut.addEventListener(egret.TimerEvent.TIMER, this.Func, this);
+        this.timerOut.addEventListener(egret.TimerEvent.TIMER_COMPLETE, this.ComFunc, this);
+    };
+    GameLayer.prototype.Func = function () {
+        if (this.maxTime >= 0) {
+            this.maxTime -= 1;
+            this.timeOut.text = this.maxTime + "";
+        }
+        else {
+            this.timerOut.stop();
+            this.goBtnDown();
+        }
+    };
+    GameLayer.prototype.ComFunc = function () {
+        this.maxTime = 15;
+        console.log("计时结束");
     };
     GameLayer.prototype.showNotice = function (str) {
         this.noticeLabel.text = str;
@@ -183,12 +204,16 @@ var GameLayer = (function (_super) {
                     this.startGroup.visible = false;
                     this.playGroup.visible = true;
                     // 是否抓中
-                    Utils.sendHttpServer("http://wawa.sz-ayx.com/api/winnig/index/userkey/" + Data.userKey + "/giftkey/" + Data.selectData.id, false, function (e) {
+                    Utils.sendHttpServer("http://wawa.sz-ayx.com/api/usecoin/index/userkey/" + Data.userKey + "/useCoin/" + Data.selectData.cost + "/giftkey/" + Data.selectData.id, false, function (e) {
                         WaitConnect.closeConnect();
                         var request = e.currentTarget;
                         console.log("winnig data : ", request.response);
                         // 得到是否夹中结果
                         Data.cmd_winnig = JSON.parse(request.response);
+                        // 刷新当前币数
+                        this.setGameScore(Data.cmd_winnig["userCoin"]);
+                        // 开始倒计时
+                        this.timerOut.start();
                     }, this);
                 }
                 else {
@@ -207,45 +232,7 @@ var GameLayer = (function (_super) {
                 this.addChild(task);
                 break;
             case this.goBtn:
-                this.checkDirBtnStype(false);
-                var self = this;
-                var newWawa = null;
-                this.hand.playAction(function (type) {
-                    if (type == 0) {
-                        egret.Tween.get(self.hand, { loop: false }).to({ x: 0, y: 0 }, 400).call(function () {
-                            self.checkDirBtnStype(true);
-                            self.startGroup.visible = true;
-                            self.playGroup.visible = false;
-                            if (Data.cmd_winnig["state"] == 1 && newWawa != null) {
-                                console.log("提示抓到娃娃了");
-                                egret.Tween.get(newWawa, { loop: false }).to({ y: newWawa.y + 225, alpha: 0 }, 200).call(function () {
-                                    newWawa.parent.removeChild(newWawa);
-                                    newWawa = null;
-                                });
-                            }
-                            // 每抓一次结束更新一次幸运值
-                            self.updateLuckyValue();
-                        });
-                    }
-                    else if (type == 2) {
-                        var wawaNode = self.wawaArray[Data.onWawaIndex];
-                        egret.Tween.get(wawaNode, { loop: false }).to({ y: wawaNode.y - 20 }, 100).to({ y: wawaNode.y }, 100);
-                    }
-                    else if (type == 1) {
-                        self.wawaArray[Data.onWawaIndex].visible = false;
-                        if (newWawa == null) {
-                            newWawa = new eui.Image(RES.getRes(Data.selectData.id + "_png"));
-                            newWawa.y = self.hand.shadow.y;
-                            newWawa.x = -20;
-                            newWawa.scaleX = 0.4;
-                            newWawa.scaleY = 0.4;
-                            newWawa.anchorOffsetX = newWawa.width / 2;
-                            newWawa.anchorOffsetY = 280;
-                            self.hand.addChild(newWawa);
-                            egret.Tween.get(newWawa, { loop: false }).to({ y: newWawa.y - 225 }, 800);
-                        }
-                    }
-                });
+                this.goBtnDown();
                 break;
             case this.changeBtn:
                 AppCanvas.setGameState(2);
@@ -259,6 +246,47 @@ var GameLayer = (function (_super) {
                 this.addChild(wawa);
                 break;
         }
+    };
+    GameLayer.prototype.goBtnDown = function () {
+        this.checkDirBtnStype(false);
+        var self = this;
+        var newWawa = null;
+        this.hand.playAction(function (type) {
+            if (type == 0) {
+                egret.Tween.get(self.hand, { loop: false }).to({ x: 0, y: 0 }, 400).call(function () {
+                    self.checkDirBtnStype(true);
+                    self.startGroup.visible = true;
+                    self.playGroup.visible = false;
+                    if (Data.cmd_winnig["usestate"] == 1 && newWawa != null) {
+                        console.log("提示抓到娃娃了");
+                        egret.Tween.get(newWawa, { loop: false }).to({ y: newWawa.y + 225, alpha: 0 }, 200).call(function () {
+                            newWawa.parent.removeChild(newWawa);
+                            newWawa = null;
+                        });
+                    }
+                    // 每抓一次结束更新一次幸运值
+                    self.updateLuckyValue();
+                });
+            }
+            else if (type == 2) {
+                var wawaNode = self.wawaArray[Data.onWawaIndex];
+                egret.Tween.get(wawaNode, { loop: false }).to({ y: wawaNode.y - 20 }, 100).to({ y: wawaNode.y }, 100);
+            }
+            else if (type == 1) {
+                self.wawaArray[Data.onWawaIndex].visible = false;
+                if (newWawa == null) {
+                    newWawa = new eui.Image(RES.getRes(Data.selectData.id + "_png"));
+                    newWawa.y = self.hand.shadow.y;
+                    newWawa.x = -20;
+                    newWawa.scaleX = 0.4;
+                    newWawa.scaleY = 0.4;
+                    newWawa.anchorOffsetX = newWawa.width / 2;
+                    newWawa.anchorOffsetY = 280;
+                    self.hand.addChild(newWawa);
+                    egret.Tween.get(newWawa, { loop: false }).to({ y: newWawa.y - 225 }, 800);
+                }
+            }
+        });
     };
     GameLayer.prototype.checkDirBtnStype = function (is) {
         this.upBtn.touchEnabled = is;

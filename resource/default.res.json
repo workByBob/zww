@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,back_png,wechat_png,scoreBg_png,noticeBg_png,luckyBg_png,luckyBar_png,kefu_png,invate_png,gift_png,gameTask_png,gameShow_png,gamePay_png,gameBg_png,gameBag_png,friendsBg_png,1_png,2_png,3_png,4_png,winBox_png,showBg_png,downD_png,downN_png,leftD_png,leftN_png,rightD_png,rightN_png,upD_png,upN_png,bgEffect01_png,bgEffect02_png,bgEffect03_png,bgEffect04_png,bgEffect05_png,bgEffect06_png,bgEffect07_png,bgEffect08_png,bgEffect09_png,bgEffect10_png,bgEffect11_png,normalBg_png,bgEffect12_png,bgEffect13_png,buyBtn_png,cellBg_png,choiceBtn_png,choiceCell_png,choiceInfo_png,choiceMark_png,choiceTitle_png,closeBtn_png,coin_png,head58_png,lingquBtn_png,sureBtn_png,tiqu1_png,tiqu2_png,yongyou1_png,yongyou2_png,bgEffect14_png,rd1_png,rd2_png,jb1_png,jb2_png,wwInfo_json,shadow_png,show_addPic_png,show_myShow_png,show_publish_png,show_receive_png,show_sucess_png,show_sure_png,show_textBg_png,show_working_png,backBtn_png,bgEffect15_png,1001_png,1002_png,1003_png,1004_png,1006_png,1007_png,1010_png,1008_png,1009_png,1005_png,changeBtn01_png,changeBtn02_png,startBtn01_png,startBtn02_png,notice_png,goBtn01_png,goBtn02_png,lightAction_json,lightAction_png,wawaInfoBtn_png,wawa2_png,wawa1_png,zhuaqu2_png,zhuaqu1_png,qrcode_png,1011_png,1012_png,1013_png,1014_png,1015_png,1016_png,1017_png,1018_png,rect_png,1019_png,1020_png,1021_png,1022_png,1023_png,1024_png,1025_png,1026_png,1027_png,1028_png,showCell_head_png,showCell_img_png,showCell_desc_png,wait_json,wait_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,back_png,wechat_png,scoreBg_png,noticeBg_png,luckyBg_png,luckyBar_png,kefu_png,invate_png,gift_png,gameTask_png,gameShow_png,gamePay_png,gameBg_png,gameBag_png,friendsBg_png,1_png,2_png,3_png,4_png,winBox_png,showBg_png,downD_png,downN_png,leftD_png,leftN_png,rightD_png,rightN_png,upD_png,upN_png,bgEffect01_png,bgEffect02_png,bgEffect03_png,bgEffect04_png,bgEffect05_png,bgEffect06_png,bgEffect07_png,bgEffect08_png,bgEffect09_png,bgEffect10_png,bgEffect11_png,normalBg_png,bgEffect12_png,bgEffect13_png,buyBtn_png,cellBg_png,choiceBtn_png,choiceCell_png,choiceInfo_png,choiceMark_png,choiceTitle_png,closeBtn_png,coin_png,head58_png,lingquBtn_png,sureBtn_png,tiqu1_png,tiqu2_png,yongyou1_png,yongyou2_png,bgEffect14_png,rd1_png,rd2_png,jb1_png,jb2_png,wwInfo_json,shadow_png,show_addPic_png,show_myShow_png,show_publish_png,show_receive_png,show_sucess_png,show_sure_png,show_textBg_png,show_working_png,backBtn_png,bgEffect15_png,1001_png,1002_png,1003_png,1004_png,1006_png,1007_png,1010_png,1008_png,1009_png,1005_png,changeBtn01_png,changeBtn02_png,startBtn01_png,startBtn02_png,notice_png,goBtn01_png,goBtn02_png,lightAction_json,lightAction_png,wawaInfoBtn_png,wawa2_png,wawa1_png,zhuaqu2_png,zhuaqu1_png,qrcode_png,1011_png,1012_png,1013_png,1014_png,1015_png,1016_png,1017_png,1018_png,rect_png,1019_png,1020_png,1021_png,1022_png,1023_png,1024_png,1025_png,1026_png,1027_png,1028_png,showCell_head_png,showCell_img_png,showCell_desc_png,wait_json,wait_png,timeBg_png,digi_fnt,digi_png",
 			"name": "preload"
 		},
 		{
@@ -804,6 +804,21 @@
 			"name": "wait_png",
 			"type": "image",
 			"url": "assets/zww/game/wait.png"
+		},
+		{
+			"name": "timeBg_png",
+			"type": "image",
+			"url": "assets/zww/game/timeBg.png"
+		},
+		{
+			"name": "digi_fnt",
+			"type": "font",
+			"url": "assets/zww/game/font/digi.fnt"
+		},
+		{
+			"name": "digi_png",
+			"type": "image",
+			"url": "assets/zww/game/font/digi.png"
 		}
 	]
 }

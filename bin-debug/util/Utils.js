@@ -168,6 +168,7 @@ var Utils = (function () {
     // }
     Utils.sendHttpServer = function (param, isShow, fun, thisObject) {
         var url = param;
+        console.log(url);
         if (isShow)
             WaitConnect.openConnect();
         var request = new egret.HttpRequest();

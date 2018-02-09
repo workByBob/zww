@@ -188,6 +188,7 @@ class Utils {
 
 	public static sendHttpServer( param:string, isShow:boolean, fun:Function, thisObject:any) {
 		var url = param;
+        console.log(url);
         if (isShow) WaitConnect.openConnect();
 		var request = new egret.HttpRequest();
 		request.responseType = egret.HttpResponseType.TEXT;
