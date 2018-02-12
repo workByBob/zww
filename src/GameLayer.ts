@@ -227,6 +227,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 						console.log("winnig data : ",request.response);
 						// 得到是否夹中结果
 						Data.cmd_winnig = JSON.parse(request.response);
+						console.log("winnig data : ",Data.cmd_winnig["msg"]);
 						// 刷新当前币数
 						this.setGameScore(Data.cmd_winnig["userCoin"]);
 						// 开始倒计时
