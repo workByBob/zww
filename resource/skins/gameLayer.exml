@@ -61,7 +61,13 @@
 			</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Image id="friendsBg" source="friendsBg_png" x="512" y="129.61" anchorOffsetX="72"/>
+	<e:Group id="headGroup" width="72" height="368" x="439" y="135">
+		<e:Image id="friendsBg" source="friendsBg_png" anchorOffsetX="72" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+		<e:Label text="好友人数：" x="9" y="26" size="12"/>
+		<e:Label text="世界人数：" x="9" y="158" size="12"/>
+		<e:Label id="onlines" text="0" x="9" y="177" size="12"/>
+		<e:Label id="friends" text="0" x="9" y="44" size="12"/>
+	</e:Group>
 	<e:Button id="payBtn" label="" x="210.61" y="895">
 		<e:skinName>
 		<e:Skin states="up,down,disabled">

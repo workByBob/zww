@@ -35,7 +35,7 @@ class Main extends eui.UILayer {
         egret.registerImplementation("eui.IThemeAdapter",new ThemeAdapter());
 
         // 微信验证
-        var isTest = true;
+        var isTest = false;
         if (Utils.isWeiXin() && isTest) {
             var wx_code = Utils.getArgsValue(Utils.getCurrHref(), "code");
             if (wx_code != ""){

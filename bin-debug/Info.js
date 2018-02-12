@@ -49,12 +49,21 @@ var Info = (function (_super) {
             case this.zqCheck:
                 this.zqCheck.selected = true;
                 // 是否抓中/api/ Winnig/ wawalog
-                Utils.sendHttpServer("http://wawa.sz-ayx.com//api/Winnig/wawalog/userkey/" + Data.userKey, true, function (e) {
+                // Utils.sendHttpServer("http://wawa.sz-ayx.com/api/Winnig/wawalog/userkey/" + Data.userKey, true, function(e:egret.Event) {
+                // 	WaitConnect.closeConnect();
+                // 	var request = <egret.HttpRequest>e.currentTarget;
+                // 	console.log("wawalog data : ",request.response);
+                // 	// 得到是否夹中结果
+                // 	Data.cmd_wawaLog = JSON.parse(request.response);
+                // 	console.log("data : ",Data.cmd_wawaLog.msg);
+                // }, this);
+                Utils.sendHttpServer("http://wawa.sz-ayx.com/api/Extract/wawa/userkey/" + Data.userKey, true, function (e) {
                     WaitConnect.closeConnect();
                     var request = e.currentTarget;
-                    console.log("wawalog data : ", request.response);
+                    console.log("Extract data : ", request.response);
                     // 得到是否夹中结果
                     Data.cmd_wawaLog = JSON.parse(request.response);
+                    console.log("data : ", Data.cmd_wawaLog.msg);
                 }, this);
                 break;
             case this.wwCheck:

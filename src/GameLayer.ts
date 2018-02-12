@@ -43,6 +43,9 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 	private timerOut:egret.Timer = null;
 	private timeOut:eui.BitmapLabel = null;
 	private maxTime:number = 15;
+	private headGroup:eui.Group = null;
+	private friends:eui.Label = null;
+	private onlines:eui.Label = null;
 	public constructor() {
 		super();
 		// 计时器
@@ -80,6 +83,19 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 		this.timerOut = new egret.Timer(1000,0);
         this.timerOut.addEventListener(egret.TimerEvent.TIMER,this.Func,this);
         this.timerOut.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.ComFunc,this);
+
+		// 在线数据
+		Utils.sendHttpServer("http://wawa.sz-ayx.com/api/online/index/userkey/" + Data.userKey, false, function(e:egret.Event) {
+			WaitConnect.closeConnect();
+			var request = <egret.HttpRequest>e.currentTarget;
+			console.log("online data : ",request.response);
+			var data = JSON.parse(request.response);
+			// 显示在线数量
+			this.onlines.text = data["count"];
+			// 显示在线玩家头像
+			var onlineHeads = data["data"];
+			console.log(onlineHeads.length + " ===");
+		}, this);
 	}
 
 	private Func(){
@@ -249,6 +265,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
     }
 
 	private goBtnDown() {
+		this.timerOut.stop();
 		this.checkDirBtnStype(false);
 		var self = this;
 		var newWawa = null;

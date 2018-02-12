@@ -51,6 +51,9 @@ var GameLayer = (function (_super) {
         _this.timerOut = null;
         _this.timeOut = null;
         _this.maxTime = 15;
+        _this.headGroup = null;
+        _this.friends = null;
+        _this.onlines = null;
         _this.pointX = 0;
         _this.pointY = 0;
         // 计时器
@@ -84,6 +87,18 @@ var GameLayer = (function (_super) {
         this.timerOut = new egret.Timer(1000, 0);
         this.timerOut.addEventListener(egret.TimerEvent.TIMER, this.Func, this);
         this.timerOut.addEventListener(egret.TimerEvent.TIMER_COMPLETE, this.ComFunc, this);
+        // 在线数据
+        Utils.sendHttpServer("http://wawa.sz-ayx.com/api/online/index/userkey/" + Data.userKey, false, function (e) {
+            WaitConnect.closeConnect();
+            var request = e.currentTarget;
+            console.log("online data : ", request.response);
+            var data = JSON.parse(request.response);
+            // 显示在线数量
+            this.onlines.text = data["count"];
+            // 显示在线玩家头像
+            var onlineHeads = data["data"];
+            console.log(onlineHeads.length + " ===");
+        }, this);
     };
     GameLayer.prototype.Func = function () {
         if (this.maxTime >= 0) {
@@ -248,6 +263,7 @@ var GameLayer = (function (_super) {
         }
     };
     GameLayer.prototype.goBtnDown = function () {
+        this.timerOut.stop();
         this.checkDirBtnStype(false);
         var self = this;
         var newWawa = null;
