@@ -11,5 +11,5 @@
 			</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Label id="payText" text="xx元 " x="306" y="35" textColor="0xFAE54C" size="20" anchorOffsetY="10"/>
+	<e:Label id="payText" text="xx元 " x="306" y="35" size="20" anchorOffsetY="10" textColor="0xffffff"/>
 </e:Skin>

@@ -27,7 +27,7 @@ class Recharge extends eui.Component implements eui.UIComponent {
 				var data = eval(info["data"]);
 				console.log(data);
 				for (var i = 0; i < data.length; i++) {
-					var cell = new RechargeCell();
+					var cell = new RechargeCell(data[i]);
 					cell.y = i * cell.height;
 					this.scrollG.addChild(cell);
 				}

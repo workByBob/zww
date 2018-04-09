@@ -1,11 +1,16 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var GameLayer = (function (_super) {
     __extends(GameLayer, _super);
     function GameLayer() {
@@ -97,7 +102,6 @@ var GameLayer = (function (_super) {
             this.onlines.text = data["count"];
             // 显示在线玩家头像
             var onlineHeads = data["data"];
-            console.log(onlineHeads.length + " ===");
         }, this);
     };
     GameLayer.prototype.Func = function () {
@@ -219,7 +223,7 @@ var GameLayer = (function (_super) {
                     this.startGroup.visible = false;
                     this.playGroup.visible = true;
                     // 是否抓中
-                    Utils.sendHttpServer("http://wawa.sz-ayx.com/api/usecoin/index/userkey/" + Data.userKey + "/useCoin/" + Data.selectData.cost + "/giftkey/" + Data.selectData.id, false, function (e) {
+                    Utils.sendHttpServer("http://wawa.sz-ayx.com/api/usercoin/index/userkey/" + Data.userKey + "/userCoin/" + Data.selectData.cost + "/giftkey/" + Data.selectData.id, false, function (e) {
                         WaitConnect.closeConnect();
                         var request = e.currentTarget;
                         console.log("winnig data : ", request.response);
@@ -274,7 +278,7 @@ var GameLayer = (function (_super) {
                     self.checkDirBtnStype(true);
                     self.startGroup.visible = true;
                     self.playGroup.visible = false;
-                    if (Data.cmd_winnig["usestate"] == 1 && newWawa != null) {
+                    if (Data.cmd_winnig["state"] == 1 && newWawa != null) {
                         console.log("提示抓到娃娃了");
                         egret.Tween.get(newWawa, { loop: false }).to({ y: newWawa.y + 225, alpha: 0 }, 200).call(function () {
                             newWawa.parent.removeChild(newWawa);
@@ -341,4 +345,3 @@ var GameLayer = (function (_super) {
     return GameLayer;
 }(eui.Component));
 __reflect(GameLayer.prototype, "GameLayer", ["eui.UIComponent", "egret.DisplayObject"]);
-//# sourceMappingURL=GameLayer.js.map

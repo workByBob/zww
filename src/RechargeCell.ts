@@ -2,9 +2,11 @@ class RechargeCell extends eui.Component implements eui.UIComponent {
 	private coinsText:eui.Label = null;
 	private payText:eui.Label = null;
 	private buyBtn:eui.Button = null;
+	private _data:any = null;
 
-	public constructor() {
+	public constructor(data:any) {
 		super();
+		this._data = data;
 		this.skinName = "resource/skins/rechargeCell.exml";
 	}
 
@@ -14,10 +16,10 @@ class RechargeCell extends eui.Component implements eui.UIComponent {
             instance.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
 		}
 		if (instance == this.coinsText) {
-			this.coinsText.text = "100" + "金币";
+			this.coinsText.text = this._data.contensdesc; // 描述多少金币
 		}
 		if (instance == this.payText) {
-			this.payText.text = "9.9元";
+			this.payText.text = this._data.name; // 价值多少元
 			this.payText.anchorOffsetX = this.payText.width/2;
 			this.payText.x = this.buyBtn.x;
 		}

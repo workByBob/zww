@@ -94,7 +94,6 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 			this.onlines.text = data["count"];
 			// 显示在线玩家头像
 			var onlineHeads = data["data"];
-			console.log(onlineHeads.length + " ===");
 		}, this);
 	}
 
@@ -221,7 +220,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 					this.startGroup.visible = false;
 					this.playGroup.visible = true;
 					// 是否抓中
-					Utils.sendHttpServer("http://wawa.sz-ayx.com/api/usecoin/index/userkey/" + Data.userKey + "/useCoin/" + Data.selectData.cost + "/giftkey/" + Data.selectData.id, false, function(e:egret.Event) {
+					Utils.sendHttpServer("http://wawa.sz-ayx.com/api/usercoin/index/userkey/" + Data.userKey + "/userCoin/" + Data.selectData.cost + "/giftkey/" + Data.selectData.id, false, function(e:egret.Event) {
         				WaitConnect.closeConnect();
 						var request = <egret.HttpRequest>e.currentTarget;
 						console.log("winnig data : ",request.response);
@@ -276,7 +275,7 @@ class GameLayer extends eui.Component implements  eui.UIComponent {
 					self.checkDirBtnStype(true);
 					self.startGroup.visible = true;
 					self.playGroup.visible = false;
-					if (Data.cmd_winnig["usestate"] == 1 && newWawa != null) {
+					if (Data.cmd_winnig["state"] == 1 && newWawa != null) {
 						console.log("提示抓到娃娃了");
 						egret.Tween.get(newWawa,{loop:false}).to({y:newWawa.y+225, alpha:0},200).call(function(){
 							newWawa.parent.removeChild(newWawa);

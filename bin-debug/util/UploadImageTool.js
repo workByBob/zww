@@ -116,9 +116,8 @@ var UploadImageTool = (function () {
         image.style.display = 'none';
         document.body.appendChild(image);
     };
+    UploadImageTool.imageSize = new egret.Point(640, 1050);
+    UploadImageTool.mime = { 'png': 'image/png', 'jpg': 'image/jpeg', 'jpeg': 'image/jpeg', 'bmp': 'image/bmp' };
     return UploadImageTool;
 }());
-UploadImageTool.imageSize = new egret.Point(640, 1050);
-UploadImageTool.mime = { 'png': 'image/png', 'jpg': 'image/jpeg', 'jpeg': 'image/jpeg', 'bmp': 'image/bmp' };
 __reflect(UploadImageTool.prototype, "UploadImageTool");
-//# sourceMappingURL=UploadImageTool.js.map
