@@ -61,3 +61,4 @@ var Bag = (function (_super) {
     return Bag;
 }(eui.Component));
 __reflect(Bag.prototype, "Bag", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=Bag.js.map

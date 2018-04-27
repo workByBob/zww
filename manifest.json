@@ -10,8 +10,8 @@
 		"libs/modules/weixinapi/weixinapi.js"
 	],
 	"game": [
+		"bin-debug/Recharge.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/Bag.js",
 		"bin-debug/ChoiceWW.js",
 		"bin-debug/ChoiceWWCell.js",
 		"bin-debug/EverydayGift.js",
@@ -21,7 +21,7 @@
 		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
 		"bin-debug/PhotoClip.js",
-		"bin-debug/Recharge.js",
+		"bin-debug/Bag.js",
 		"bin-debug/RechargeCell.js",
 		"bin-debug/Show.js",
 		"bin-debug/Task.js",

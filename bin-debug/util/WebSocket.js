@@ -112,3 +112,4 @@ var WebSocketExample = (function (_super) {
     return WebSocketExample;
 }(egret.DisplayObjectContainer));
 __reflect(WebSocketExample.prototype, "WebSocketExample");
+//# sourceMappingURL=WebSocket.js.map

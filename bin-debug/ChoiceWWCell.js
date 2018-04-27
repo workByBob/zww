@@ -71,3 +71,4 @@ var ChoiceWWCell = (function (_super) {
     return ChoiceWWCell;
 }(eui.Component));
 __reflect(ChoiceWWCell.prototype, "ChoiceWWCell", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=ChoiceWWCell.js.map

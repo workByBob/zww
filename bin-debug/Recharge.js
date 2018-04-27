@@ -55,3 +55,4 @@ var Recharge = (function (_super) {
     return Recharge;
 }(eui.Component));
 __reflect(Recharge.prototype, "Recharge", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=Recharge.js.map

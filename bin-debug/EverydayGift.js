@@ -38,3 +38,4 @@ var EverydayGift = (function (_super) {
     return EverydayGift;
 }(eui.Component));
 __reflect(EverydayGift.prototype, "EverydayGift", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=EverydayGift.js.map

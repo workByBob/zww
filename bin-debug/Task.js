@@ -44,3 +44,4 @@ var Task = (function (_super) {
     return Task;
 }(eui.Component));
 __reflect(Task.prototype, "Task", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=Task.js.map

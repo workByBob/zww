@@ -121,3 +121,4 @@ var UploadImageTool = (function () {
     return UploadImageTool;
 }());
 __reflect(UploadImageTool.prototype, "UploadImageTool");
+//# sourceMappingURL=UploadImageTool.js.map

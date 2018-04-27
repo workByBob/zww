@@ -50,3 +50,4 @@ var TaskCell = (function (_super) {
     return TaskCell;
 }(eui.Component));
 __reflect(TaskCell.prototype, "TaskCell", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=TaskCell.js.map

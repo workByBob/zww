@@ -80,3 +80,4 @@ var Hand = (function (_super) {
     return Hand;
 }(eui.Component));
 __reflect(Hand.prototype, "Hand", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=Hand.js.map

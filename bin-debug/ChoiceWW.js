@@ -143,3 +143,4 @@ var ChoiceWW = (function (_super) {
     return ChoiceWW;
 }(eui.Component));
 __reflect(ChoiceWW.prototype, "ChoiceWW", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=ChoiceWW.js.map

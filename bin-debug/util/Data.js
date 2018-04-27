@@ -36,3 +36,4 @@ var Data = (function () {
     return Data;
 }());
 __reflect(Data.prototype, "Data");
+//# sourceMappingURL=Data.js.map

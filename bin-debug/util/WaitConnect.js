@@ -58,3 +58,4 @@ var WaitConnect = (function (_super) {
     return WaitConnect;
 }(eui.Component));
 __reflect(WaitConnect.prototype, "WaitConnect", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=WaitConnect.js.map

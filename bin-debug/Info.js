@@ -94,3 +94,4 @@ var Info = (function (_super) {
     return Info;
 }(eui.Component));
 __reflect(Info.prototype, "Info", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=Info.js.map

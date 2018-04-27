@@ -107,3 +107,4 @@ var PhotoClip = (function (_super) {
     return PhotoClip;
 }(eui.Component));
 __reflect(PhotoClip.prototype, "PhotoClip", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=PhotoClip.js.map

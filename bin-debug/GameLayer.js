@@ -345,3 +345,4 @@ var GameLayer = (function (_super) {
     return GameLayer;
 }(eui.Component));
 __reflect(GameLayer.prototype, "GameLayer", ["eui.UIComponent", "egret.DisplayObject"]);
+//# sourceMappingURL=GameLayer.js.map
